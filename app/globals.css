@@ -1,0 +1,474 @@
+@import "tailwindcss";
+
+/* ===========================================================
+   Espace Blanc — Direction "Lumière & sérénité"
+   Palette tirée du moodboard (image jointe au brief).
+   Aucune réminiscence newspaper : tons clairs/chauds, marges
+   généreuses, hiérarchie par la taille et l'italique.
+   =========================================================== */
+
+:root {
+  /* Palette */
+  --ivory: #f5f0e5;
+  --lin: #ece4d0;
+  --sable: #c9bca0;
+  --taupe: #837e6b;
+  --encre: #1b1a14;
+  --laiton: #a88454;
+
+  /* Variantes & alias sémantiques */
+  --bg: var(--ivory);
+  --bg-soft: var(--lin);
+  --ink: var(--encre);
+  --ink-soft: #4a4738;
+  --ink-mute: var(--taupe);
+  --accent: var(--laiton);
+  --line: rgba(27, 26, 20, 0.10);
+  --line-strong: rgba(27, 26, 20, 0.22);
+  --line-on-dark: rgba(245, 240, 229, 0.18);
+
+  /* Textes sur fond encre (footer, CTA finale) */
+  --on-dark: #f5f0e5;
+  --on-dark-mute: #c4b896;
+}
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-lin: var(--lin);
+  --color-sable: var(--sable);
+  --color-taupe: var(--taupe);
+  --color-encre: var(--encre);
+  --color-laiton: var(--laiton);
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-manrope);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+/* ---------------------------- Typographie ---------------------------- */
+
+.serif {
+  font-family: var(--font-cormorant), "Cormorant Garamond", serif;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.05;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-cormorant), "Cormorant Garamond", serif;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.08;
+  color: var(--ink);
+}
+
+em, .italic, .italic-bold {
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Eyebrow / petite étiquette (remplace .label mono) */
+.eyebrow {
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+.eyebrow.on-dark {
+  color: var(--on-dark-mute);
+}
+
+/* ---------------------------- Layout ---------------------------- */
+
+.page {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 56px;
+}
+
+@media (max-width: 720px) {
+  .page {
+    padding: 0 24px;
+  }
+}
+
+.divider {
+  height: 1px;
+  background: var(--line);
+  border: none;
+}
+
+.divider-strong {
+  height: 1px;
+  background: var(--sable);
+  border: none;
+}
+
+/* ---------------------------- Boutons ---------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.005em;
+  color: var(--on-dark);
+  background: var(--encre);
+  border: 1px solid var(--encre);
+  border-radius: 4px;
+  transition: background .25s ease, color .25s ease, border-color .25s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background: var(--laiton);
+  border-color: var(--laiton);
+  color: var(--on-dark);
+}
+
+.btn-ghost {
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+}
+
+.btn-ghost:hover {
+  background: var(--ink);
+  color: var(--on-dark);
+  border-color: var(--ink);
+}
+
+.btn-ivory {
+  color: var(--ink);
+  background: var(--ivory);
+  border-color: var(--ivory);
+}
+
+.btn-ivory:hover {
+  background: var(--laiton);
+  border-color: var(--laiton);
+  color: var(--on-dark);
+}
+
+.btn-outline-light {
+  color: var(--on-dark);
+  background: transparent;
+  border: 1px solid rgba(245, 240, 229, 0.45);
+}
+
+.btn-outline-light:hover {
+  background: var(--on-dark);
+  color: var(--ink);
+  border-color: var(--on-dark);
+}
+
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: inherit;
+  cursor: pointer;
+  padding-bottom: 2px;
+  border-bottom: 1px solid currentColor;
+  transition: color .2s ease;
+}
+
+.btn-link:hover {
+  color: var(--laiton);
+}
+
+/* ---------------------------- Monogramme EB ---------------------------- */
+
+.monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--ink);
+  font-family: var(--font-cormorant), serif;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.monogram.on-dark {
+  border-color: var(--on-dark);
+  color: var(--on-dark);
+}
+
+/* ---------------------------- Photos & figures ---------------------------- */
+
+.photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--lin);
+  border-radius: 2px;
+}
+
+.photo .img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.photo:hover .img {
+  transform: scale(1.03);
+}
+
+.photo .cap {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  color: var(--on-dark);
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: rgba(27, 26, 20, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 6px 10px;
+  border-radius: 2px;
+}
+
+/* ---------------------------- Form fields ---------------------------- */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.field label {
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+.field input,
+.field textarea,
+.field select {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--line);
+  padding: 14px 16px;
+  border-radius: 3px;
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 15.5px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .2s ease, background .2s ease;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: var(--laiton);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* ---------------------------- Mega menu ---------------------------- */
+
+.mega {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: var(--ivory);
+  color: var(--ink);
+  transform: translateY(-100%);
+  transition: transform .5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  overflow: auto;
+}
+
+.mega.open {
+  transform: translateY(0);
+}
+
+/* ---------------------------- Progress bars ---------------------------- */
+
+.progress {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+.progress span {
+  flex: 1;
+  height: 2px;
+  background: var(--line);
+  border-radius: 99px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress span.done {
+  background: var(--ink);
+}
+
+.progress span.current {
+  background: var(--laiton);
+  transform: scaleX(0.92);
+  transform-origin: left;
+}
+
+/* ---------------------------- Animations & utilities ---------------------------- */
+
+.view {
+  animation: viewIn .5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes viewIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------- Nav links ---------------------------- */
+
+.nav-link {
+  position: relative;
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 500;
+  font-size: 13.5px;
+  color: var(--ink);
+  padding: 6px 0;
+  cursor: pointer;
+  white-space: nowrap;
+  background: transparent;
+  border: none;
+  transition: color .2s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-link.active {
+  color: var(--laiton);
+}
+
+.nav-link-dark {
+  color: var(--on-dark);
+}
+
+.nav-link-dark.active {
+  color: var(--laiton);
+}
+
+@media (max-width: 1100px) {
+  .nav-hide-md { display: none !important; }
+}
+
+@media (max-width: 880px) {
+  .nav-hide-sm { display: none !important; }
+}
+
+/* ---------------------------- Footer ---------------------------- */
+
+.footer-dark {
+  background: var(--encre);
+  color: var(--on-dark);
+  padding: 96px 0 40px;
+}
+
+/* ---------------------------- Chip ---------------------------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 11px;
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  border: 1px solid var(--sable);
+  border-radius: 99px;
+  background: transparent;
+}
+
+.chip.on-dark {
+  color: var(--on-dark);
+  border-color: rgba(245, 240, 229, 0.35);
+}
+
+/* ---------------------------- Cards & surfaces ---------------------------- */
+
+.surface-lin {
+  background: var(--lin);
+}
+
+.surface-ivory {
+  background: var(--ivory);
+}
+
+.surface-dark {
+  background: var(--encre);
+  color: var(--on-dark);
+}
