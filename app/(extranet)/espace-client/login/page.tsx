@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { LoginForm } from "./login-form";
+import { LogoMark } from "@/components/marketing/logo-mark";
 import { getSupabaseServer, isSupabaseConfigured } from "@/lib/supabase/server";
-import { ROUTES, BRAND, MONOGRAM } from "@/lib/routes";
+import { ROUTES, BRAND } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "Espace client — connexion",
@@ -18,7 +19,7 @@ export default async function LoginPage() {
     const supabase = await getSupabaseServer();
     const { data } = await supabase.auth.getUser();
     if (data.user) {
-      redirect("/espace-client/dossier");
+      redirect("/espace-client");
     }
   }
 
@@ -28,7 +29,7 @@ export default async function LoginPage() {
         minHeight: "100vh",
         display: "grid",
         placeItems: "center",
-        padding: "80px 24px",
+        padding: "clamp(48px, 8vw, 80px) clamp(12px, 4vw, 24px)",
         background: "var(--ivory)",
       }}
     >
@@ -40,7 +41,7 @@ export default async function LoginPage() {
           color: "var(--ink)",
           border: "1px solid var(--line)",
           borderRadius: 6,
-          padding: 40,
+          padding: "clamp(22px, 5vw, 40px)",
         }}
       >
         <Link
@@ -48,25 +49,21 @@ export default async function LoginPage() {
           style={{
             display: "inline-flex",
             alignItems: "center",
-            gap: 12,
-            marginBottom: 28,
+            gap: 14,
+            marginBottom: 32,
           }}
         >
+          <LogoMark size={40} tone="gold" />
           <span
             style={{
               fontFamily: "var(--font-cormorant), serif",
               fontWeight: 500,
               fontSize: 26,
               letterSpacing: "-0.005em",
+              color: "var(--ink)",
             }}
           >
             {BRAND}
-          </span>
-          <span
-            className="monogram"
-            style={{ width: 28, height: 28, fontSize: 11 }}
-          >
-            {MONOGRAM}
           </span>
         </Link>
         <div style={{ marginBottom: 28 }}>

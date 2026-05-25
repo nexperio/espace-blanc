@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Icon } from "./icon";
+import { LogoMark } from "./logo-mark";
 import { MegaMenu } from "./mega-menu";
-import { ROUTES, BRAND, MONOGRAM } from "@/lib/routes";
+import { ROUTES, BRAND } from "@/lib/routes";
 
 const NAV_ITEMS: Array<{ href: string; label: string; hide?: string }> = [
   { href: ROUTES.methode, label: "La méthode", hide: "nav-hide-md" },
@@ -14,15 +15,7 @@ const NAV_ITEMS: Array<{ href: string; label: string; hide?: string }> = [
 
 export function Header() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const NavLink = ({
     href,
@@ -37,7 +30,7 @@ export function Header() {
     return (
       <Link
         href={href}
-        className={`nav-link ${active ? "active" : ""} ${hide}`}
+        className={`nav-link nav-link-dark ${active ? "active" : ""} ${hide}`}
       >
         {label}
       </Link>
@@ -53,16 +46,9 @@ export function Header() {
           left: 0,
           right: 0,
           zIndex: 80,
-          background: scrolled
-            ? "rgba(245, 240, 229, 0.92)"
-            : "transparent",
-          backdropFilter: scrolled ? "blur(14px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(14px)" : "none",
-          borderBottom: scrolled
-            ? "1px solid var(--line)"
-            : "1px solid transparent",
-          transition: "background .3s ease, border-color .3s ease",
-          color: "var(--ink)",
+          background: "var(--encre)",
+          borderBottom: "1px solid var(--line-on-dark)",
+          color: "var(--on-dark)",
         }}
       >
         <div
@@ -78,7 +64,7 @@ export function Header() {
           <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
             <button
               onClick={() => setMegaOpen(true)}
-              className="nav-link"
+              className="nav-link nav-link-dark"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -97,25 +83,21 @@ export function Header() {
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: 12,
+              gap: 14,
               padding: "0 16px",
+              color: "var(--on-dark)",
             }}
           >
+            <LogoMark size={40} tone="gold" />
             <span
               style={{
                 fontFamily: "var(--font-cormorant), serif",
                 fontWeight: 500,
-                fontSize: 26,
+                fontSize: 28,
                 letterSpacing: "-0.005em",
               }}
             >
               {BRAND}
-            </span>
-            <span
-              className="monogram"
-              style={{ width: 30, height: 30, fontSize: 12 }}
-            >
-              {MONOGRAM}
             </span>
           </Link>
 
@@ -130,14 +112,14 @@ export function Header() {
             <NavLink href={ROUTES.concept} label="Le concept" hide="nav-hide-md" />
             <Link
               href={ROUTES.espaceClient}
-              className="nav-link nav-hide-sm"
+              className="nav-link nav-link-dark nav-hide-sm"
               style={{ display: "inline-flex", alignItems: "center", gap: 8 }}
             >
               <Icon name="user" size={13} /> Espace client
             </Link>
             <Link
               href={ROUTES.contact}
-              className="btn"
+              className="btn btn-ivory"
               style={{ padding: "11px 18px" }}
             >
               Diagnostic gratuit <Icon name="arrow-right" size={13} />

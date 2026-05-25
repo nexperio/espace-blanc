@@ -66,11 +66,11 @@ export function Manifesto() {
                 }}
               >
                 <span
+                  className="warm-gradient"
                   style={{
                     fontFamily: "var(--font-cormorant), serif",
                     fontWeight: 500,
-                    fontSize: 28,
-                    color: "var(--laiton)",
+                    fontSize: 32,
                     lineHeight: 1,
                   }}
                 >

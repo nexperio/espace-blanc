@@ -68,12 +68,12 @@ export function Method() {
                   }}
                 >
                   <span
+                    className="warm-gradient"
                     style={{
                       fontFamily: "var(--font-cormorant), serif",
-                      fontSize: 88,
+                      fontSize: 96,
                       lineHeight: 1,
                       fontWeight: 500,
-                      color: "var(--laiton)",
                     }}
                   >
                     {String(i + 1).padStart(2, "0")}

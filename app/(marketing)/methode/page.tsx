@@ -128,11 +128,11 @@ export default function MethodePage() {
                   }}
                 >
                   <span
+                    className="warm-gradient"
                     style={{
                       fontFamily: "var(--font-cormorant), serif",
                       fontWeight: 500,
-                      color: "var(--laiton)",
-                      fontSize: 108,
+                      fontSize: 112,
                       lineHeight: 1,
                     }}
                   >
@@ -180,9 +180,9 @@ export default function MethodePage() {
                     alignItems: "center",
                     gap: 12,
                     padding: "12px 18px",
-                    border: "1px solid var(--laiton)",
+                    border: "1px solid var(--ember)",
                     borderRadius: 4,
-                    color: "var(--laiton)",
+                    color: "var(--ember)",
                   }}
                 >
                   <Icon name="shield" size={16} />
@@ -280,7 +280,7 @@ export default function MethodePage() {
               margin: "0 auto",
             }}
           >
-            Voir si la méthode <em style={{ color: "var(--laiton)" }}>s&apos;applique à vous</em>
+            Voir si la méthode <em style={{ color: "var(--amber)" }}>s&apos;applique à vous</em>
           </h2>
           <Link
             href={ROUTES.contact}

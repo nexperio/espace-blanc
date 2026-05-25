@@ -213,7 +213,7 @@ export function ContactForm() {
           <p
             role="alert"
             style={{
-              color: "var(--laiton)",
+              color: "var(--ember)",
               fontSize: 14,
               marginTop: 16,
             }}
@@ -317,7 +317,7 @@ function Radios({
           >
             <span
               className="eyebrow"
-              style={{ color: active ? "var(--laiton)" : "var(--taupe)" }}
+              style={{ color: active ? "var(--amber)" : "var(--taupe)" }}
             >
               0{i + 1}
             </span>
@@ -338,9 +338,9 @@ function Radios({
                 height: 22,
                 borderRadius: "50%",
                 border: `1px solid ${
-                  active ? "var(--laiton)" : "var(--line-strong)"
+                  active ? "var(--amber)" : "var(--line-strong)"
                 }`,
-                background: active ? "var(--laiton)" : "transparent",
+                background: active ? "var(--amber)" : "transparent",
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",

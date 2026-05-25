@@ -140,7 +140,7 @@ export function Testimonials() {
                         height: 2,
                         borderRadius: 99,
                         background:
-                          k === i ? "var(--laiton)" : "var(--line-strong)",
+                          k === i ? "var(--amber)" : "var(--line-strong)",
                         transition: "all .3s ease",
                       }}
                     />

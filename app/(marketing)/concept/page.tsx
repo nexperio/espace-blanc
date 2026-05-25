@@ -69,7 +69,7 @@ export default function ConceptPage() {
               color: "var(--ink-soft)",
               marginTop: 28,
               maxWidth: "62ch",
-              borderLeft: "1px solid var(--laiton)",
+              borderLeft: "2px solid var(--ember)",
               paddingLeft: 22,
               fontStyle: "italic",
               lineHeight: 1.65,
@@ -199,7 +199,7 @@ export default function ConceptPage() {
                   lineHeight: 1.35,
                   color: "var(--ink-mute)",
                   textDecoration: "line-through",
-                  textDecorationColor: "var(--laiton)",
+                  textDecorationColor: "var(--ember)",
                   textDecorationThickness: "1px",
                 }}
               >

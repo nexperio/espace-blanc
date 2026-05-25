@@ -1,38 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Icon } from "../icon";
 import { SectionHeading } from "../section-heading";
-
-const QS = [
-  {
-    q: "Combien coûte une intervention ?",
-    a: "Le diagnostic est gratuit. La mission est devisée en fonction du volume, du contexte et de la part valorisable. Nous reversons systématiquement la valeur nette des ventes.",
-  },
-  {
-    q: "Intervenez-vous hors Île-de-France ?",
-    a: "Notre cœur d'activité reste l'Île-de-France. Pour le reste, nous étudions au cas par cas avec un déplacement facturé.",
-  },
-  {
-    q: "Comment fonctionne la valorisation ?",
-    a: "Brocanteurs, dépôts-vente, ventes en ligne, ou associations bénéficiaires. Vous validez chaque destination, nous restituons les sommes.",
-  },
-  {
-    q: "Que devient ce qui n'a pas de valeur marchande ?",
-    a: "Soit un don à une association partenaire (avec certificat), soit un recyclage filière. La décharge reste l'exception.",
-  },
-  {
-    q: "Le client peut-il être absent ?",
-    a: "Oui. Vous validez à distance via l'extranet, à votre rythme. Photos, fiches, prix proposés, dons : tout vous est soumis avant exécution.",
-  },
-] as const;
+import { FAQ_HOME } from "@/content/faq";
 
 export function FaqShort() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section style={{ padding: "140px 0", background: "var(--ivory)" }}>
-      <div className="page" style={{ maxWidth: 1100, margin: "0 auto" }}>
+    <section
+      style={{
+        padding: "clamp(80px, 12vw, 140px) clamp(16px, 4vw, 56px)",
+        background: "var(--ivory)",
+      }}
+    >
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <SectionHeading
           eyebrow="Questions reçues"
           title={
@@ -40,32 +24,30 @@ export function FaqShort() {
               Cinq <em>réponses</em>
             </>
           }
-          aside="Pour la FAQ complète, voir le pied de page."
+          aside={
+            <Link href="/faq" style={{ borderBottom: "1px solid currentColor" }}>
+              Voir toutes les questions →
+            </Link>
+          }
         />
         <div style={{ marginTop: 56, borderTop: "1px solid var(--sable)" }}>
-          {QS.map((it, i) => (
+          {FAQ_HOME.map((it, i) => (
             <div
               key={it.q}
               style={{ borderBottom: "1px solid var(--line)" }}
             >
               <button
                 onClick={() => setOpen(open === i ? -1 : i)}
+                className="flex flex-wrap items-baseline justify-between gap-4"
                 style={{
                   width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "baseline",
-                  padding: "28px 0",
+                  padding: "clamp(20px, 3vw, 28px) 0",
                   textAlign: "left",
-                  gap: 24,
                 }}
               >
                 <span
-                  style={{
-                    display: "flex",
-                    gap: 28,
-                    alignItems: "baseline",
-                  }}
+                  className="flex flex-wrap items-baseline gap-4 sm:gap-7"
+                  style={{ flex: "1 1 auto", minWidth: 0 }}
                 >
                   <span className="eyebrow" style={{ minWidth: 30 }}>
                     0{i + 1}
@@ -74,7 +56,7 @@ export function FaqShort() {
                     style={{
                       fontFamily: "var(--font-cormorant), serif",
                       fontWeight: 500,
-                      fontSize: "clamp(22px, 2.2vw, 30px)",
+                      fontSize: "clamp(20px, 2.4vw, 30px)",
                       letterSpacing: "-0.005em",
                       lineHeight: 1.25,
                       color: "var(--ink)",
@@ -106,16 +88,16 @@ export function FaqShort() {
               {open === i && (
                 <div
                   style={{
-                    paddingLeft: 58,
-                    paddingBottom: 28,
-                    paddingRight: 60,
-                    maxWidth: "70ch",
+                    paddingLeft: "clamp(0px, 4vw, 58px)",
+                    paddingBottom: "clamp(20px, 3vw, 28px)",
+                    paddingRight: "clamp(0px, 2vw, 60px)",
+                    maxWidth: "72ch",
                   }}
                 >
                   <p
                     style={{
                       color: "var(--ink-soft)",
-                      fontSize: 16.5,
+                      fontSize: "clamp(15px, 1.6vw, 16.5px)",
                       lineHeight: 1.6,
                     }}
                   >

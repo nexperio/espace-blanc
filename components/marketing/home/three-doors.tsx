@@ -97,14 +97,15 @@ export function ThreeDoors() {
                   {d.lede}
                 </p>
                 <div
+                  className="warm-gradient"
                   style={{
                     marginTop: 18,
                     display: "inline-flex",
                     alignItems: "center",
                     gap: 10,
-                    color: "var(--laiton)",
-                    fontWeight: 500,
+                    fontWeight: 600,
                     fontSize: 14,
+                    letterSpacing: "0.01em",
                   }}
                 >
                   Découvrir l&apos;accompagnement{" "}

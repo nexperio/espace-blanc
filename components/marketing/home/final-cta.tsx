@@ -28,7 +28,7 @@ export function FinalCta() {
         >
           Le passage commence
           <br />
-          par <em style={{ color: "var(--laiton)" }}>une conversation</em>
+          par <em style={{ color: "var(--amber)" }}>une conversation</em>
         </h2>
         <p
           style={{

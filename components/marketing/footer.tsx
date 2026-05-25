@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Icon } from "./icon";
-import { ROUTES, PHONE, PHONE_TEL, EMAIL, BRAND, MONOGRAM } from "@/lib/routes";
+import { LogoMark } from "./logo-mark";
+import { ROUTES, PHONE, PHONE_TEL, EMAIL, BRAND } from "@/lib/routes";
 
 type ColItem = readonly [label: string, href: string];
 
@@ -74,10 +75,11 @@ export function Footer() {
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: 14,
+                gap: 16,
                 marginBottom: 28,
               }}
             >
+              <LogoMark size={48} tone="gold" />
               <span
                 style={{
                   fontFamily: "var(--font-cormorant), serif",
@@ -88,7 +90,6 @@ export function Footer() {
               >
                 {BRAND}
               </span>
-              <span className="monogram on-dark">{MONOGRAM}</span>
             </div>
             <h3
               style={{
