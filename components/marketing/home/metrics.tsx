@@ -37,7 +37,7 @@ export function Metrics() {
               color: "var(--on-dark)",
             }}
           >
-            Ce que nous <em style={{ color: "var(--laiton)" }}>mesurons</em>
+            Ce que nous <em style={{ color: "var(--amber)" }}>mesurons</em>
           </h2>
         </div>
         <div

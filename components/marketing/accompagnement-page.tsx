@@ -143,11 +143,11 @@ export function AccompagnementPage({ which }: { which: AccompKey }) {
                     }}
                   >
                     <span
+                      className="warm-gradient"
                       style={{
                         fontFamily: "var(--font-cormorant), serif",
                         fontWeight: 500,
-                        color: "var(--laiton)",
-                        fontSize: 24,
+                        fontSize: 26,
                       }}
                     >
                       0{i + 1}
@@ -225,11 +225,11 @@ export function AccompagnementPage({ which }: { which: AccompKey }) {
                 }}
               >
                 <span
+                  className="warm-gradient"
                   style={{
                     fontFamily: "var(--font-cormorant), serif",
                     fontWeight: 500,
-                    color: "var(--laiton)",
-                    fontSize: 48,
+                    fontSize: 52,
                     lineHeight: 1,
                     display: "block",
                     marginBottom: 14,
@@ -464,7 +464,7 @@ export function AccompagnementPage({ which }: { which: AccompKey }) {
                     >
                       {it}
                     </span>
-                    <span style={{ color: "var(--laiton)" }}>
+                    <span style={{ color: "#d8702a" }}>
                       <Icon name="check" size={20} />
                     </span>
                   </li>
@@ -494,7 +494,7 @@ export function AccompagnementPage({ which }: { which: AccompKey }) {
               color: "var(--on-dark)",
             }}
           >
-            On en parle <em style={{ color: "var(--laiton)" }}>quand vous voulez</em>
+            On en parle <em style={{ color: "var(--amber)" }}>quand vous voulez</em>
           </h2>
           <p
             style={{

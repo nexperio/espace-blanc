@@ -8,27 +8,45 @@
    =========================================================== */
 
 :root {
-  /* Palette */
+  /* Palette principale (moodboard) */
   --ivory: #f5f0e5;
   --lin: #ece4d0;
   --sable: #c9bca0;
   --taupe: #837e6b;
-  --encre: #1b1a14;
+  --encre: #1c2742;
   --laiton: #a88454;
+
+  /* Accents (palette secondaire, à doser) */
+  --navy: #0f1626;     /* nuit profonde — alternative à --encre */
+  --ember: #3a2820;    /* brun braise — citations, filets graves */
+  --amber: #ffb267;    /* ambre chaud — focus, hovers, numéros vivants */
+  --sand: #d9c9a9;     /* sable clair — surfaces alternatives */
+  --cream: #f3eadb;    /* crème — texte sur fond sombre, surfaces très claires */
 
   /* Variantes & alias sémantiques */
   --bg: var(--ivory);
   --bg-soft: var(--lin);
-  --ink: var(--encre);
-  --ink-soft: #4a4738;
+  --ink: var(--ember);              /* texte courant : brun braise chaud */
+  --ink-soft: #5b463a;
   --ink-mute: var(--taupe);
-  --accent: var(--laiton);
-  --line: rgba(27, 26, 20, 0.10);
-  --line-strong: rgba(27, 26, 20, 0.22);
-  --line-on-dark: rgba(245, 240, 229, 0.18);
+  --heading: var(--ember);
+  --accent: var(--amber);
+  --accent-deep: var(--ember);
+  --line: rgba(58, 40, 32, 0.12);
+  --line-strong: rgba(58, 40, 32, 0.24);
+  --line-on-dark: rgba(243, 234, 219, 0.18);
 
-  /* Textes sur fond encre (footer, CTA finale) */
-  --on-dark: #f5f0e5;
+  /* Dégradé chaud — réutilisable sur accents (em italiques, numéros, liens).
+     Reproduit le rendu vu sur fond navy (cf. CTA "une conversation"). */
+  --gradient-warm: linear-gradient(
+    135deg,
+    #ffc88a 0%,
+    #ffa647 45%,
+    #d8702a 100%
+  );
+
+  /* Textes sur fond sombre */
+  --on-dark: var(--cream);
   --on-dark-mute: #c4b896;
 }
 
@@ -39,6 +57,11 @@
   --color-taupe: var(--taupe);
   --color-encre: var(--encre);
   --color-laiton: var(--laiton);
+  --color-navy: var(--navy);
+  --color-ember: var(--ember);
+  --color-amber: var(--amber);
+  --color-sand: var(--sand);
+  --color-cream: var(--cream);
   --font-serif: var(--font-cormorant);
   --font-sans: var(--font-manrope);
 }
@@ -98,6 +121,16 @@ h1, h2, h3, h4 {
 em, .italic, .italic-bold {
   font-style: italic;
   font-weight: 500;
+}
+
+/* Dégradé chaud sur les emphases de titre — fonctionne autant sur fond clair
+   que sur fond navy (le motif visuel de l'accent reste constant). */
+h1 em, h2 em, h3 em, h4 em, .warm-gradient {
+  background: var(--gradient-warm);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 /* Eyebrow / petite étiquette (remplace .label mono) */
@@ -160,9 +193,9 @@ em, .italic, .italic-bold {
 }
 
 .btn:hover {
-  background: var(--laiton);
-  border-color: var(--laiton);
-  color: var(--on-dark);
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--encre);
 }
 
 .btn-ghost {
@@ -184,9 +217,9 @@ em, .italic, .italic-bold {
 }
 
 .btn-ivory:hover {
-  background: var(--laiton);
-  border-color: var(--laiton);
-  color: var(--on-dark);
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--encre);
 }
 
 .btn-outline-light {
@@ -216,7 +249,7 @@ em, .italic, .italic-bold {
 }
 
 .btn-link:hover {
-  color: var(--laiton);
+  color: var(--amber);
 }
 
 /* ---------------------------- Monogramme EB ---------------------------- */
@@ -271,7 +304,7 @@ em, .italic, .italic-bold {
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  background: rgba(27, 26, 20, 0.55);
+  background: rgba(28, 39, 66, 0.58);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   padding: 6px 10px;
@@ -313,7 +346,7 @@ em, .italic, .italic-bold {
 .field input:focus,
 .field textarea:focus,
 .field select:focus {
-  border-color: var(--laiton);
+  border-color: var(--amber);
   background: rgba(255, 255, 255, 0.85);
 }
 
@@ -356,7 +389,7 @@ em, .italic, .italic-bold {
 }
 
 .progress span.current {
-  background: var(--laiton);
+  background: var(--amber);
   transform: scaleX(0.92);
   transform-origin: left;
 }
@@ -408,7 +441,7 @@ em, .italic, .italic-bold {
 }
 
 .nav-link.active {
-  color: var(--laiton);
+  color: var(--amber);
 }
 
 .nav-link-dark {
@@ -416,7 +449,7 @@ em, .italic, .italic-bold {
 }
 
 .nav-link-dark.active {
-  color: var(--laiton);
+  color: var(--amber);
 }
 
 @media (max-width: 1100px) {
@@ -471,4 +504,170 @@ em, .italic, .italic-bold {
 .surface-dark {
   background: var(--encre);
   color: var(--on-dark);
+}
+
+/* ---------------------------- Legal pages -------------------------------- */
+
+.legal-content {
+  max-width: 72ch;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+
+.legal-content h2 {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 500;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin-top: 64px;
+  margin-bottom: 18px;
+}
+
+.legal-content h2:first-child {
+  margin-top: 0;
+}
+
+.legal-content h3 {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--ink);
+  margin-top: 36px;
+  margin-bottom: 12px;
+}
+
+.legal-content p {
+  margin-bottom: 18px;
+}
+
+.legal-content ul {
+  list-style: none;
+  margin: 12px 0 22px;
+  padding: 0;
+}
+
+.legal-content li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 10px;
+}
+
+.legal-content li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 10px;
+  height: 1px;
+  background: var(--ember);
+}
+
+.legal-content a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+}
+
+.legal-content a:hover {
+  text-decoration-color: var(--ember);
+}
+
+.legal-content strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ---------------------------- Cookie banner ------------------------------ */
+
+.cookie-banner {
+  position: fixed;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 24px;
+  background: var(--encre);
+  color: var(--on-dark);
+  border-radius: 6px;
+  box-shadow: 0 18px 48px rgba(15, 22, 38, 0.28);
+  max-width: 880px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  animation: cookieIn 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes cookieIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cookie-banner p {
+  flex: 1;
+  min-width: 260px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--on-dark-mute);
+  margin: 0;
+}
+
+.cookie-banner p a {
+  color: var(--on-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cookie-banner-actions button {
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 11px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.cookie-banner-actions .btn-refuse {
+  background: transparent;
+  color: var(--on-dark-mute);
+  border-color: var(--line-on-dark);
+}
+
+.cookie-banner-actions .btn-refuse:hover {
+  color: var(--on-dark);
+  border-color: var(--on-dark);
+}
+
+.cookie-banner-actions .btn-accept {
+  background: var(--ivory);
+  color: var(--encre);
+}
+
+.cookie-banner-actions .btn-accept:hover {
+  background: #fff;
+}
+
+@media (max-width: 640px) {
+  .cookie-banner {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    padding: 18px;
+  }
 }

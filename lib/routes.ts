@@ -9,7 +9,7 @@ export const ROUTES = {
   demenagement: "/accompagnements/demenagement",
   autre: "/contact",
   espaceClient: "/espace-client/login",
-  dossier: "/espace-client/dossier",
+  dossier: "/espace-client",
 } as const;
 
 export const PHONE = "+33 1 45 67 89 10";

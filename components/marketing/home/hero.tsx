@@ -27,14 +27,13 @@ export function Hero() {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
             alignItems: "center",
             marginBottom: 56,
             flexWrap: "wrap",
             gap: 12,
           }}
         >
-          <span className="eyebrow">Espace Blanc — Direction 01</span>
           <span className="eyebrow">Île-de-France · Sur rendez-vous</span>
         </div>
 

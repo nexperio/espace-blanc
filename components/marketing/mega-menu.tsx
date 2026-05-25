@@ -134,7 +134,7 @@ export function MegaMenu({ open, onClose }: Props) {
                   position: "absolute",
                   inset: 0,
                   background:
-                    "linear-gradient(180deg, transparent 30%, rgba(27, 26, 20, 0.78) 100%)",
+                    "linear-gradient(180deg, rgba(28, 39, 66, 0.15) 0%, rgba(28, 39, 66, 0.55) 45%, rgba(28, 39, 66, 0.95) 100%)",
                 }}
               />
               <div
@@ -159,6 +159,8 @@ export function MegaMenu({ open, onClose }: Props) {
                       fontSize: 48,
                       lineHeight: 1.05,
                       letterSpacing: "-0.005em",
+                      color: "var(--on-dark)",
+                      textShadow: "0 2px 16px rgba(28, 39, 66, 0.6)",
                     }}
                   >
                     {d.t}

@@ -14,4 +14,9 @@ export const env = {
   contactFromEmail: () =>
     process.env.CONTACT_FROM_EMAIL ??
     "Espace Blanc <bonjour@espace-blanc.com>",
+  siteUrl: () =>
+    (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(
+      /\/$/,
+      "",
+    ),
 };
