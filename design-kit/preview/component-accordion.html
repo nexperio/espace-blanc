@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 36px; font-family: var(--font-sans); }
+  .faq{ border-top: 1px solid var(--ink); }
+  .item{ border-bottom: 1px solid var(--rule); }
+  .head{
+    width: 100%;
+    display:flex; justify-content: space-between; align-items: baseline;
+    padding: 18px 0;
+    text-align: left; gap: 16px;
+    background: transparent; border: none; cursor: pointer;
+    font-family: var(--font-sans); color: inherit;
+  }
+  .head .left{ display:flex; gap: 18px; align-items: baseline; }
+  .head .num{
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .1em; color: var(--ink-mute);
+  }
+  .head .q{
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 22px; line-height: 1.25; letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .head .pm{
+    font-family: var(--font-serif); font-style: italic;
+    color: var(--accent); font-size: 22px; line-height: 1;
+  }
+  .body{
+    padding: 0 24px 22px 60px; max-width: 70ch;
+  }
+  .body p{
+    font-family: var(--font-sans); font-size: 15.5px; line-height: 1.55;
+    color: var(--ink-soft); margin: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="faq">
+    <div class="item">
+      <button class="head">
+        <span class="left">
+          <span class="num">01</span>
+          <span class="q">Combien coûte une intervention ?</span>
+        </span>
+        <span class="pm">−</span>
+      </button>
+      <div class="body">
+        <p>Le diagnostic est gratuit. La mission est devisée en fonction du volume, du contexte et de la part valorisable. Nous reversons systématiquement la valeur nette des ventes, ligne par ligne.</p>
+      </div>
+    </div>
+    <div class="item">
+      <button class="head">
+        <span class="left">
+          <span class="num">02</span>
+          <span class="q">Intervenez-vous hors Île-de-France ?</span>
+        </span>
+        <span class="pm">+</span>
+      </button>
+    </div>
+    <div class="item">
+      <button class="head">
+        <span class="left">
+          <span class="num">03</span>
+          <span class="q">Comment fonctionne la valorisation ?</span>
+        </span>
+        <span class="pm">+</span>
+      </button>
+    </div>
+  </div>
+</body>
+</html>

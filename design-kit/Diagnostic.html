@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>Diagnostic — espace-blanc-cyan.vercel.app</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#efe9dc;
+    --paper-2:#fbf8f1;
+    --ink:#1f1a14;
+    --ink-soft:#4a4236;
+    --mute:#7a7165;
+    --rule:rgba(31,26,20,.18);
+    --rule-soft:rgba(31,26,20,.08);
+    --accent:#a78060;
+    --warn:#c2452a;
+    --ok:#5a7a3a;
+  }
+  html,body{background:var(--paper);color:var(--ink);min-height:100%}
+  body{font-family:'Manrope',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55;font-size:15px}
+  a{color:inherit}
+  em{font-style:italic}
+  .serif{font-family:'Cormorant Garamond',serif;font-weight:500;letter-spacing:-0.01em}
+  .mono{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0;text-transform:uppercase}
+  .label{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--mute);font-weight:500}
+
+  .wrap{max-width:1240px;margin:0 auto;padding:40px 64px 96px}
+
+  /* -------- Top strip -------- */
+  .strip{
+    display:flex;justify-content:space-between;align-items:baseline;gap:24px;
+    border-bottom:1px solid var(--rule);padding-bottom:18px;
+    color:var(--mute);
+  }
+  .strip .serif{font-size:15px}
+
+  /* -------- Hero -------- */
+  .hero{
+    display:grid;grid-template-columns:1.35fr 1fr;gap:80px;
+    padding:72px 0 56px;align-items:end;
+  }
+  h1.serif{
+    font-size:clamp(64px,7.6vw,120px);line-height:.9;letter-spacing:-0.03em;
+    font-weight:500;
+  }
+  h1 em{color:var(--ink)}
+  .lede{font-size:19px;line-height:1.5;color:var(--ink-soft);max-width:44ch}
+  .lede strong{color:var(--ink);font-weight:500}
+  .meta-block{
+    display:grid;grid-template-columns:auto 1fr;gap:6px 18px;
+    margin-top:32px;padding-top:24px;border-top:1px solid var(--rule);
+    font-size:14px;
+  }
+  .meta-block dt{color:var(--mute);font-family:'Cormorant Garamond',serif;font-size:15px}
+  .meta-block dd{color:var(--ink-soft)}
+
+  /* -------- TOC -------- */
+  .toc{
+    margin:32px 0 64px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+    padding:20px 0;display:grid;grid-template-columns:repeat(5,1fr);gap:24px;
+  }
+  .toc a{display:flex;flex-direction:column;gap:6px;text-decoration:none}
+  .toc a .n{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--mute);font-size:14px}
+  .toc a .t{font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.1;font-weight:500;letter-spacing:-0.01em}
+
+  /* -------- Sections -------- */
+  section.cahier{padding:48px 0;border-top:1px solid var(--rule)}
+  .cahier-head{
+    display:grid;grid-template-columns:1fr 2fr 1fr;gap:24px;align-items:baseline;
+    margin-bottom:40px;
+  }
+  .cahier-head h2{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:clamp(36px,4.4vw,60px);line-height:1;letter-spacing:-0.02em;
+  }
+  .cahier-head h2 em{color:var(--ink)}
+  .cahier-head .aside{text-align:right;font-style:italic;color:var(--mute);font-size:14px;max-width:24ch;justify-self:end}
+
+  /* -------- Findings -------- */
+  .finding{
+    display:grid;grid-template-columns:80px 1fr 1fr;gap:32px;
+    padding:28px 0;border-top:1px solid var(--rule-soft);
+    align-items:start;
+  }
+  .finding:first-of-type{border-top:1px solid var(--rule)}
+  .finding .num{
+    font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;
+    font-size:36px;color:var(--mute);line-height:1;letter-spacing:-0.02em;
+  }
+  .finding h3{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:26px;line-height:1.1;letter-spacing:-0.015em;
+    margin-bottom:10px;
+  }
+  .finding h3 em{color:var(--ink)}
+  .finding .pill{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    text-transform:uppercase;letter-spacing:.12em;
+    padding:4px 8px;border-radius:99px;margin-bottom:12px;
+    background:var(--paper-2);color:var(--ink);border:1px solid var(--rule);
+  }
+  .finding .pill.p0{background:#1f1a14;color:var(--paper);border-color:#1f1a14}
+  .finding .pill.p1{background:#caa07a;color:#2d241b;border-color:#caa07a}
+  .finding .pill.p2{background:var(--paper-2);color:var(--mute)}
+  .finding p{color:var(--ink-soft);font-size:14.5px}
+  .finding p + p{margin-top:10px}
+  .finding .fix{
+    background:var(--paper-2);border:1px solid var(--rule-soft);
+    border-left:2px solid var(--accent);
+    padding:18px 22px;border-radius:2px;
+  }
+  .finding .fix .fix-title{
+    font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;
+    color:var(--mute);display:block;margin-bottom:8px;
+    letter-spacing:0;
+  }
+  .finding .fix ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+  .finding .fix li{
+    padding-left:18px;position:relative;font-size:14px;line-height:1.5;color:var(--ink);
+  }
+  .finding .fix li::before{
+    content:'→';position:absolute;left:0;top:0;color:var(--accent);font-family:'Manrope',sans-serif;
+  }
+  .finding .quote{
+    margin-top:10px;padding:10px 14px;background:rgba(31,26,20,.04);
+    border-left:2px solid rgba(31,26,20,.2);
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--ink-soft);
+  }
+
+  /* -------- Forces (short list) -------- */
+  .forces{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  }
+  .force{padding:24px 24px 24px 0;border-right:1px solid var(--rule-soft)}
+  .force:last-child{border-right:none;padding-right:0}
+  .force .n{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--mute);display:block;margin-bottom:10px}
+  .force h4{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;line-height:1.1;margin-bottom:8px;letter-spacing:-0.01em}
+  .force p{font-size:14px;color:var(--ink-soft)}
+
+  /* -------- Annotated page map -------- */
+  .map{
+    display:grid;grid-template-columns:1fr 1.5fr;gap:40px;align-items:start;
+    margin-top:8px;
+  }
+  .map .frame{
+    background:var(--paper-2);border:1px solid var(--rule);
+    padding:18px 18px 22px;font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--ink-soft);
+  }
+  .map .frame .row{
+    display:flex;justify-content:space-between;gap:8px;
+    padding:9px 10px;border-bottom:1px dotted rgba(31,26,20,.15);
+    align-items:baseline;
+  }
+  .map .frame .row:last-child{border-bottom:none}
+  .map .frame .row .tag{color:var(--mute);min-width:38px}
+  .map .frame .row .name{color:var(--ink);flex:1}
+  .map .frame .row .flag{font-size:9px;padding:2px 6px;border-radius:99px;text-transform:uppercase;letter-spacing:.1em}
+  .map .frame .row .flag.dup{background:#1f1a14;color:var(--paper)}
+  .map .frame .row .flag.cut{background:#c2452a;color:#fff}
+  .map .frame .row .flag.move{background:#caa07a;color:#2d241b}
+  .map .frame .row .flag.ok{background:#5a7a3a;color:#fff}
+  .map .legend{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--mute);font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:0}
+  .map .legend span{display:inline-flex;align-items:center;gap:6px}
+  .map .legend i{width:8px;height:8px;border-radius:99px;display:inline-block}
+
+  .map .notes{display:flex;flex-direction:column;gap:18px}
+  .map .notes h4{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;letter-spacing:-0.01em}
+  .map .notes p{color:var(--ink-soft);font-size:14.5px}
+  .map .notes .row{
+    display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:start;
+    padding:14px 0;border-top:1px solid var(--rule-soft);
+  }
+  .map .notes .row:first-child{border-top:1px solid var(--rule)}
+  .map .notes .row .n{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--mute);font-size:14px}
+
+  /* -------- DS plan -------- */
+  .ds-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
+  }
+  .ds-card{
+    background:var(--paper-2);border:1px solid var(--rule);
+    padding:28px 32px;border-radius:4px;
+  }
+  .ds-card .label{display:block;margin-bottom:10px}
+  .ds-card h4{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:28px;line-height:1.05;letter-spacing:-0.015em;margin-bottom:12px}
+  .ds-card h4 em{color:var(--ink)}
+  .ds-card p{font-size:14.5px;color:var(--ink-soft)}
+  .ds-card ul{margin-top:14px;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+  .ds-card li{font-size:13.5px;color:var(--ink);padding-left:16px;position:relative}
+  .ds-card li::before{content:'·';position:absolute;left:4px;color:var(--accent);font-weight:700}
+  .ds-card .tokens{
+    margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;
+  }
+  .ds-card .tok{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    padding:4px 8px;border-radius:99px;border:1px solid var(--rule);
+    color:var(--ink-soft);background:var(--paper);
+  }
+  .swatch-row{display:flex;gap:0;margin-top:14px;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+  .sw{flex:1;height:44px;display:flex;align-items:flex-end;padding:6px 8px;font-family:'JetBrains Mono',monospace;font-size:9px}
+
+  /* -------- Final ask -------- */
+  .ask{
+    margin-top:64px;background:#1f1a14;color:var(--paper-2);
+    padding:48px 56px;border-radius:6px;
+    display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:end;
+  }
+  .ask h2{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:clamp(40px,4.6vw,64px);line-height:.95;letter-spacing:-0.025em;
+  }
+  .ask h2 em{color:#caa07a}
+  .ask p{margin-top:18px;color:#d6c9a8;font-size:17px;line-height:1.5;max-width:52ch}
+  .ask .questions{display:flex;flex-direction:column;gap:14px}
+  .ask .q{
+    border:1px solid rgba(214,201,168,.25);padding:14px 18px;border-radius:2px;
+    font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:#f3ecdd;
+  }
+  .ask .q b{font-style:normal;font-weight:500;color:#caa07a;margin-right:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em}
+
+  .footer{
+    margin-top:56px;border-top:1px solid var(--rule);padding-top:18px;
+    display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    color:var(--mute);
+  }
+  .footer .serif{font-size:15px}
+</style>
+</head>
+<body>
+  <main class="wrap">
+
+    <!-- ============ TOP STRIP ============ -->
+    <div class="strip">
+      <span class="serif">Préparé pour Eugenia · espace-blanc.com</span>
+      <span class="serif">Audit n° 01 · Mai 2026</span>
+    </div>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div>
+        <span class="label" style="display:block;margin-bottom:14px">Diagnostic du site live, avant design system</span>
+        <h1 class="serif">Ce qui tient,<br/><em>ce qui flotte.</em></h1>
+      </div>
+      <div>
+        <p class="lede">Le site dit beaucoup de belles choses et le dit bien. Il les dit, en revanche, <strong>plusieurs fois et dans le désordre</strong>. Voici les 11 faiblesses repérées sur la page d'accueil, hiérarchisées, avec une proposition de rectification pour chacune. À lire avant qu'on ouvre le chantier <em>design system</em>.</p>
+        <dl class="meta-block">
+          <dt>Périmètre</dt><dd>Homepage (live Vercel), nav, footer</dd>
+          <dt>Méthode</dt><dd>Lecture frontale, parcours utilisateur, comparaison aux deux prototypes du projet</dd>
+          <dt>Sortie</dt><dd>11 findings · 11 fixes · 1 ébauche de tokens</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ TOC ============ -->
+    <nav class="toc">
+      <a href="#forces"><span class="n">i</span><span class="t">Ce qui tient</span></a>
+      <a href="#faiblesses"><span class="n">ii</span><span class="t">Faiblesses, par priorité</span></a>
+      <a href="#carte"><span class="n">iii</span><span class="t">La page rectifiée</span></a>
+      <a href="#ds"><span class="n">iv</span><span class="t">Vers le design system</span></a>
+      <a href="#suite"><span class="n">v</span><span class="t">À trancher avec toi</span></a>
+    </nav>
+
+    <!-- ============ FORCES ============ -->
+    <section class="cahier" id="forces">
+      <div class="cahier-head">
+        <span class="label">Cahier I — Forces</span>
+        <h2 class="serif">Ce qui <em>tient déjà.</em></h2>
+        <span class="aside">À garder intact, ce sont les fondations du design system.</span>
+      </div>
+      <div class="forces">
+        <div class="force">
+          <span class="n">01 · Voix</span>
+          <h4 class="serif">Le registre éditorial</h4>
+          <p>« On vide. Vous respirez. » Le ton est juste, précis, jamais larmoyant. C'est le seul vrai différenciateur face aux débarrasseurs au lot.</p>
+        </div>
+        <div class="force">
+          <span class="n">02 · Promesse</span>
+          <h4 class="serif">Le pivot unique</h4>
+          <p>« Vous gardez la main, nous portons le reste. » Promesse forte, opérationnelle, qui se prouve par la méthode en 4 temps et l'extranet.</p>
+        </div>
+        <div class="force">
+          <span class="n">03 · Preuves</span>
+          <h4 class="serif">Les chiffres audités</h4>
+          <p>412 missions, 1,8 M€ restitués, 84 t détournées. Concrets, datés, vérifiables. Bien plus convaincants que tout adjectif.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAIBLESSES ============ -->
+    <section class="cahier" id="faiblesses">
+      <div class="cahier-head">
+        <span class="label">Cahier II — Faiblesses + rectifications</span>
+        <h2 class="serif">Onze points, <em>du plus dur au plus fin.</em></h2>
+        <span class="aside">P0 bloquant · P1 important · P2 polish.</span>
+      </div>
+
+      <!-- 01 -->
+      <article class="finding">
+        <div class="num">01</div>
+        <div>
+          <span class="pill p0">P0 · Hiérarchie</span>
+          <h3 class="serif">« Lumière &amp; sérénité » ne dit pas <em>ce que vous faites.</em></h3>
+          <p>Un visiteur arrive en deuil, en stress, en déménagement. Il ne cherche pas une atmosphère, il cherche à comprendre en 4 secondes <strong>si vous êtes la bonne porte</strong>. Le titre est une promesse atmosphérique, pas un nom de service.</p>
+          <div class="quote">« Lumière &amp; sérénité » → poétique mais générique. Peut être l'enseigne d'un spa, d'un cabinet d'avocat, d'un funérarium.</div>
+        </div>
+        <aside class="fix">
+          <span class="fix-title">Rectification</span>
+          <ul>
+            <li>Garder « Lumière &amp; sérénité » <em>en eyebrow</em> ou en signature de fin.</li>
+            <li>Titre H1 → bénéfice concret. Ex : « <em>On vide. Vous respirez.</em> » ou « <em>Le passage, en de bonnes mains.</em> » (déjà testé dans le prototype).</li>
+            <li>Sous-titre = la phrase « Succession, départ en résidence, déménagement » qui sert <em>déjà</em> de méta-description.</li>
+          </ul>
+        </aside>
+      </article>
+
+      <!-- 02 -->
+      <article class="finding">
+        <div class="num">02</div>
+        <div>
+          <span class="pill p0">P0 · Répétition</span>
+          <h3 class="serif">« Trois portes » apparaît <em>deux fois</em>, à 800 px d'écart.</h3>
+          <p>Une fois dans le mega-menu (« Trois portes, une seule main »), une fois en section H2 (« Trois récits, une seule main »). Mêmes 3 liens, même métaphore, même formule en deux temps. Le lecteur croit qu'il a raté quelque chose et scrolle plus vite.</p>
+        </div>
+        <aside class="fix">
+          <span class="fix-title">Rectification</span>
+          <ul>
+            <li>Choisir <em>une seule</em> formule. Je recommande « Trois portes d'entrée. » (concret &gt; lyrique en haut de page).</li>
+            <li>Le mega-menu garde les 3 cartes ; la section homepage devient un <em>récit-cas</em> par porte (photo, 1 verbatim, 1 chiffre), pas un re-listing.</li>
+            <li>Économie : -1 section, -3 H2 redondants.</li>
+          </ul>
+        </aside>
+      </article>
+
+      <!-- 03 -->
+      <article class="finding">
+        <div class="num">03</div>
+        <div>
+          <span class="pill p0">P0 · Densité</span>
+          <h3 class="serif">Huit badges de confiance d'un trait, <em>aucun ne pèse.</em></h3>
+          <p>Devis 24h / Sans engagement / RC pro + transport / Assurance vérifiable / Tarification claire / Pas de frais cachés / Données chiffrées / RGPD. Présentés en bande horizontale, ils sonnent comme un footer Trustpilot.</p>
+        </div>
+        <aside class="fix">
+          <span class="fix-title">Rectification</span>
+          <ul>
+            <li>Réduire à <strong>3 promesses</strong> tenables, pas 8 cases à cocher.</li>
+            <li>Ex : <em>Devis sous 24h · Pas de prise sur l'existant · Bilan d'impact tracé.</em></li>
+            <li>RC pro, RGPD, assurance → footer (rassurances légales, pas argumentaires).</li>
+          </ul>
+        </aside>
+      </article>
+
+      <!-- 04 -->
+      <article class="finding">
+        <div class="num">04</div>
+        <div>
+          <span class="pill p0">P0 · Conversion</span>
+          <h3 class="serif">Cinq « Diagnostic gratuit » <em>avant le formulaire.</em></h3>
+          <p>Nav, hero, après méthode, après comparaison, fin de page. Le visiteur n'a pas besoin de cinq portes vers la même salle — il a besoin que celle qu'il voit soit la bonne. À force de répéter le CTA, on dilue sa charge.</p>
+        </div>
+        <aside class="fix">
+          <span class="fix-title">Rectification</span>
+          <ul>
+            <li>Hero + nav (sticky) + fin de page. Trois points, pas plus.</li>
+            <li>Sur les blocs intermédiaires, remplacer par des <em>liens textuels</em> contextuels (« Lire l'accompagnement Succession →»).</li>
+            <li>Réserver le bouton plein-fond noir au moment où le lecteur a vraiment toutes les preuves.</li>
+          </ul>
+        </aside>
+      </article>
+
+      <!-- 05 -->
+      <article class="finding">
+        <div class="num">05</div>
+        <div>
+          <span class="pill p0">P0 · Redondance</span>
+          <h3 class="serif">Bilan d'impact + Engagement éco-solidaire <em>= deux fois le même bloc.</em></h3>
+          <p>412/1,8 M€/84 t/23 d'un côté ; 92 %/23/1×/0 de l'autre. Les chiffres se chevauchent (23 associations apparaît deux fois), le ton est identique, l'œil décroche.</p>
+        </div>
+        <aside class="fix">
+          <span class="fix-title">Rectification</span>
+          <ul>
+            <li>Garder le <strong>bilan d'impact</strong> tel quel (4 chiffres, audités).</li>
+            <li>Supprimer la bande noire « Rien ne se jette ». Garder la phrase comme exergue avant la méthode, sans répéter les stats.</li>
+            <li>Le détail éco-solidaire → page <em>Le concept</em>, qui existe déjà.</li>
+          </ul>
+        </aside>
+      </article>
+
+      <!-- 06 -->
+      <article class="finding">
+        <div class="num">06</div>
+        <div>
+          <span class="pill p1">P1 · Confiance</span>
+          <h3 class="serif">Témoignage 01 / 04 — et on n'en voit <em>qu'un seul.</em></h3>
+          <p>La pagination affichée laisse croire à un carousel ; la page n'en montre qu'un. Soit le composant est cassé, soit le statique trahit la pagination. Effet : le lecteur compte 1/4 et passe à autre chose.</p>
+        </div>
+        <aside class="fix">
+          <span class="fix-title">Rectification</span>
+          <ul>
+            <li>Carousel auto-play (8 s) déjà codé dans le prototype EB — porter en prod.</li>
+            <li>Ou : <em>3 témoignages courts</em> en triptyque, un par accompagnement (succession / sénior / déménagement).</li>
+            <li>Ajouter un chiffre clé par témoignage (« 4 200 € restitués ») — déjà fait pour Sophie.</li>
+          </ul>
+        </aside>
+      </article>
+
+      <!-- 07 -->
+      <article class="finding">
+        <div class="num">07</div>
+        <div>
+          <span class="pill p1">P1 · Lisibilité</span>
+          <h3 class="serif">La FAQ : <em>une question lue, quatre refermées sans aperçu.</em></h3>
+          <p>Q01 affichée avec réponse, Q02 à Q05 réduites à leurs titres. Visuellement on dirait des liens cassés. L'utilisateur ne sait pas s'il faut cliquer, ou si c'est tout.</p>
+        </div>
+        <aside class="fix">
+          <span class="fix-title">Rectification</span>
+          <ul>
+            <li>Accordéon : icône +/- explicite, état hover évident.</li>
+            <li>Première phrase de chaque réponse visible (preview de 12-15 mots), puis « Lire la suite ».</li>
+            <li>Ou : toutes ouvertes par défaut si elles tiennent (5 × 80 mots = lisible).</li>
+          </ul>
+        </aside>
+      </article>
+
+      <!-- 08 -->
+      <article class="finding">
+        <div class="num">08</div>
+        <div>
+          <span class="pill p1">P1 · Voix</span>
+          <h3 class="serif">Trop de titres en <em>« X, Y »</em> avec virgule-italique.</h3>
+          <p>« Trois portes, une seule main » / « Trois récits, une seule main » / « Quatre temps, une cadence » / « Vos lettres, nos preuves » / « Le marché tel qu'il est, ce que nous changeons » / « Rien ne se jette, tant qu'on prend le temps ». La formule devient une tique. Elle perd sa charge.</p>
+        </div>
+        <aside class="fix">
+          <span class="fix-title">Rectification</span>
+          <ul>
+            <li>Limiter à 2-3 H2 sur la formule virgule-italique (réserver aux moments-clés : hero, manifeste, CTA final).</li>
+            <li>Pour le reste, autoriser des H2 simples et factuels : « Notre méthode », « Bilan d'impact », « Questions reçues ».</li>
+            <li>Règle DS : <em>1 figure de style par section, pas plus.</em></li>
+          </ul>
+        </aside>
+      </article>
+
+      <!-- 09 -->
+      <article class="finding">
+        <div class="num">09</div>
+        <div>
+          <span class="pill p1">P1 · Crédibilité</span>
+          <h3 class="serif">Téléphone, email et adresse <em>sentent le placeholder.</em></h3>
+          <p>+33 1 45 67 89 10 est l'équivalent français du « 555-0100 » américain. bonjour@espace-blanc.com / Île-de-France · sur rendez-vous — pas d'adresse postale, pas de SIRET dans le footer, pas de photo d'équipe.</p>
+        </div>
+        <aside class="fix">
+          <span class="fix-title">Rectification</span>
+          <ul>
+            <li>Numéro réel ou format moins reconnaissable (01 47, 01 84…).</li>
+            <li>Footer : SIRET, RC pro (n° de police), adresse postale (même boîte postale).</li>
+            <li>1 portrait d'Eugenia dans le manifeste — l'œil cherche un visage humain.</li>
+          </ul>
+        </aside>
+      </article>
+
+      <!-- 10 -->
+      <article class="finding">
+        <div class="num">10</div>
+        <div>
+          <span class="pill p2">P2 · Code</span>
+          <h3 class="serif">Styles inline partout, <em>quatre familles typographiques chargées.</em></h3>
+          <p>Le prototype actuel charge Cormorant Garamond, Newsreader, Manrope, Hanken Grotesk. Trois suffisent rarement, quatre fragmentent la voix et coûtent ~180 KB de fonts. Les styles sont en <code>style={…}</code> inline → impossible à thémer.</p>
+        </div>
+        <aside class="fix">
+          <span class="fix-title">Rectification — anticipe le DS</span>
+          <ul>
+            <li>Choisir : <strong>Cormorant Garamond</strong> (titres / italique) + <strong>Manrope</strong> (UI / corps). Optionnel : 1 mono pour les chiffres et labels.</li>
+            <li>Supprimer Newsreader et Hanken Grotesk.</li>
+            <li>Tokens CSS : <code>--font-serif</code>, <code>--font-sans</code>, échelle <code>--text-*</code>, <code>--space-*</code>.</li>
+          </ul>
+        </aside>
+      </article>
+
+      <!-- 11 -->
+      <article class="finding">
+        <div class="num">11</div>
+        <div>
+          <span class="pill p2">P2 · Identité</span>
+          <h3 class="serif">Trois noms en circulation : <em>Espace Blanc, Eklipsis, Eklypsis.</em></h3>
+          <p>Le projet est intitulé « Espace Blanc → Eklypsis ». Le sommaire dit « Eklipsis ». Le site live dit « Espace Blanc ». Aucun fichier ne tranche. Tout design system se construit autour d'un nom — il faut le poser en premier.</p>
+        </div>
+        <aside class="fix">
+          <span class="fix-title">Rectification</span>
+          <ul>
+            <li>Décision binaire à prendre maintenant : on garde <em>Espace Blanc</em> ou on bascule vers <em>Eklipsis/Eklypsis</em> ?</li>
+            <li>Si bascule : choisir l'orthographe finale (Eklipsis avec un i, Eklypsis avec un y — la seconde est plus typographique, la première plus prononçable).</li>
+            <li>Le DS se nomme alors d'après ce choix : tokens prefixés <code>--eb-*</code> ou <code>--ek-*</code>.</li>
+          </ul>
+        </aside>
+      </article>
+
+    </section>
+
+    <!-- ============ MAP ============ -->
+    <section class="cahier" id="carte">
+      <div class="cahier-head">
+        <span class="label">Cahier III — La page, rectifiée</span>
+        <h2 class="serif">Avant / après, <em>en plan.</em></h2>
+        <span class="aside">À droite, ce qu'on coupe, déplace, ou garde tel quel.</span>
+      </div>
+      <div class="map">
+        <div class="frame">
+          <div class="row"><span class="tag">01</span><span class="name">Nav + mega-menu Accompagnements</span><span class="flag move">simpl.</span></div>
+          <div class="row"><span class="tag">02</span><span class="name">Hero — « Lumière &amp; sérénité »</span><span class="flag move">réécr.</span></div>
+          <div class="row"><span class="tag">03</span><span class="name">8 badges de confiance</span><span class="flag cut">→ 3</span></div>
+          <div class="row"><span class="tag">04</span><span class="name">Trois récits, une seule main</span><span class="flag dup">doublon</span></div>
+          <div class="row"><span class="tag">05</span><span class="name">On peut tout faire avec douceur</span><span class="flag ok">ok</span></div>
+          <div class="row"><span class="tag">06</span><span class="name">Quatre temps, une cadence</span><span class="flag ok">ok</span></div>
+          <div class="row"><span class="tag">07</span><span class="name">Bilan d'impact (4 chiffres)</span><span class="flag ok">ok</span></div>
+          <div class="row"><span class="tag">08</span><span class="name">Témoignage 01/04 (1 affiché)</span><span class="flag move">carousel</span></div>
+          <div class="row"><span class="tag">09</span><span class="name">Pourquoi nous, plutôt qu'un débarrasseur</span><span class="flag ok">ok</span></div>
+          <div class="row"><span class="tag">10</span><span class="name">Rien ne se jette (éco)</span><span class="flag cut">doublon avec 07</span></div>
+          <div class="row"><span class="tag">11</span><span class="name">FAQ — 5 questions</span><span class="flag move">UX</span></div>
+          <div class="row"><span class="tag">12</span><span class="name">CTA final</span><span class="flag ok">ok</span></div>
+          <div class="row"><span class="tag">13</span><span class="name">Footer</span><span class="flag move">+légal</span></div>
+          <div class="legend">
+            <span><i style="background:#1f1a14"></i>doublon</span>
+            <span><i style="background:#c2452a"></i>à couper</span>
+            <span><i style="background:#caa07a"></i>à déplacer/retravailler</span>
+            <span><i style="background:#5a7a3a"></i>garder</span>
+          </div>
+        </div>
+        <div class="notes">
+          <h4 class="serif">Effet net</h4>
+          <p>On passe de <strong>13 sections</strong> à <strong>9 sections distinctes</strong>. La page perd ~25% de hauteur, gagne en rythme, et le chemin « hero → preuve → méthode → témoignage → CTA » devient lisible en un scroll.</p>
+          <div class="row"><span class="n">Coupé</span><div><strong>2 sections</strong> : doublon « Trois récits », bande éco « Rien ne se jette ». Les contenus migrent ailleurs (page Concept, footer légal).</div></div>
+          <div class="row"><span class="n">Réécrit</span><div><strong>Hero, badges, FAQ</strong>. Le hero passe d'atmosphère à promesse opérationnelle, les badges fondent de 8 à 3, la FAQ devient lisible.</div></div>
+          <div class="row"><span class="n">Conservé</span><div><strong>Manifeste, méthode, bilan, comparatif, CTA final</strong>. C'est l'ossature qui marche.</div></div>
+          <div class="row"><span class="n">Ajouté</span><div><strong>Légal au footer</strong> (SIRET, RC pro, adresse). <strong>Visage humain</strong> dans le manifeste. <strong>3 témoignages</strong> en triptyque.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DS PLAN ============ -->
+    <section class="cahier" id="ds">
+      <div class="cahier-head">
+        <span class="label">Cahier IV — Vers le design system</span>
+        <h2 class="serif">Ce qu'on pose <em>avant la première ligne.</em></h2>
+        <span class="aside">Pas le DS lui-même — ses fondations, pour qu'on s'aligne.</span>
+      </div>
+
+      <div class="ds-grid">
+        <div class="ds-card">
+          <span class="label">01 · Tokens couleur</span>
+          <h4 class="serif">Une <em>seule</em> palette, deux modes (clair / sombre).</h4>
+          <p>Pivot sur la direction visuelle retenue. Si on garde Espace Blanc : papier crème + encre brune + accent doré. Si on bascule Eklipsis : navy nuit + papier + terracotta.</p>
+          <div class="swatch-row">
+            <div class="sw" style="background:#efe9dc;color:#1f1a14">--paper</div>
+            <div class="sw" style="background:#fbf8f1;color:#1f1a14">--paper-2</div>
+            <div class="sw" style="background:#1f1a14;color:#fbf8f1">--ink</div>
+            <div class="sw" style="background:#4a4236;color:#fbf8f1">--ink-soft</div>
+            <div class="sw" style="background:#a78060;color:#fbf8f1">--accent</div>
+          </div>
+          <ul>
+            <li>5 couleurs nommées par <em>rôle</em>, pas par teinte.</li>
+            <li>1 accent unique (pas de gradient, pas de seconde couleur d'appui).</li>
+            <li>Variables CSS — plus aucun hex en dur dans les composants.</li>
+          </ul>
+        </div>
+
+        <div class="ds-card">
+          <span class="label">02 · Typographie</span>
+          <h4 class="serif">Deux familles, <em>une échelle modulaire.</em></h4>
+          <p>Cormorant Garamond pour la voix (titres, italiques, citations). Manrope pour le service (corps, UI, labels, formulaires). On supprime Newsreader et Hanken.</p>
+          <div class="tokens">
+            <span class="tok">--text-xs · 12</span>
+            <span class="tok">--text-sm · 14</span>
+            <span class="tok">--text-base · 16</span>
+            <span class="tok">--text-lg · 19</span>
+            <span class="tok">--text-xl · 24</span>
+            <span class="tok">--text-2xl · 32</span>
+            <span class="tok">--text-3xl · 48</span>
+            <span class="tok">--text-display · clamp(64, 7vw, 120)</span>
+          </div>
+          <ul>
+            <li>Échelle géométrique (ratio ~1.25), tronquée pour l'UI.</li>
+            <li>Règle : 1 niveau H1 par page, 4 H2 max sur la homepage.</li>
+          </ul>
+        </div>
+
+        <div class="ds-card">
+          <span class="label">03 · Espacements &amp; rythme</span>
+          <h4 class="serif">Une <em>seule</em> grille de 8.</h4>
+          <p>Tout est multiple de 8 (4 toléré pour les détails). Les sections respirent par padding vertical, pas par marges arbitraires.</p>
+          <div class="tokens">
+            <span class="tok">--space-1 · 4</span>
+            <span class="tok">--space-2 · 8</span>
+            <span class="tok">--space-3 · 16</span>
+            <span class="tok">--space-4 · 24</span>
+            <span class="tok">--space-5 · 32</span>
+            <span class="tok">--space-6 · 48</span>
+            <span class="tok">--space-7 · 64</span>
+            <span class="tok">--space-8 · 96</span>
+          </div>
+          <ul>
+            <li>Container max : 1240px. Padding latéral : 64 (desk), 24 (mob).</li>
+            <li>Section vertical padding : 80–120 px (desk), 48–72 (mob).</li>
+          </ul>
+        </div>
+
+        <div class="ds-card">
+          <span class="label">04 · Composants à figer</span>
+          <h4 class="serif">Dix briques, <em>pas trente.</em></h4>
+          <p>Ce qu'on a déjà bricolé dans les prototypes mais qu'il faut figer en composants nommés, testés, documentés.</p>
+          <ul>
+            <li><strong>Button</strong> — primary (ink), ghost (bordure), link (souligné).</li>
+            <li><strong>Section</strong> — eyebrow + H2 + aside, gabarit unique.</li>
+            <li><strong>Card</strong> — image + tag + titre + lede + lien.</li>
+            <li><strong>Stat</strong> — chiffre serif + label italique + sous-label mono.</li>
+            <li><strong>Quote</strong> — texte + portrait + auteur + métadonnée.</li>
+            <li><strong>Accordion</strong> — pour la FAQ.</li>
+            <li><strong>Nav + Mega-menu</strong>.</li>
+            <li><strong>Form</strong> — diagnostic, espace client.</li>
+            <li><strong>Figure</strong> — image + figcaption (legend bas).</li>
+            <li><strong>Footer</strong> — légal complet.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ASK ============ -->
+    <section class="ask" id="suite">
+      <div>
+        <span class="label" style="color:#caa07a;display:block;margin-bottom:14px">Cahier V — Avant de rectifier pour de bon</span>
+        <h2>Cinq décisions <em>à prendre avec toi.</em></h2>
+        <p>Je peux ouvrir le chantier code dès que tu réponds à ces cinq questions. Elles dictent le nom du DS, ses tokens, et l'ordre des prochaines livraisons.</p>
+      </div>
+      <div class="questions">
+        <div class="q"><b>Q1</b>Espace Blanc, Eklipsis ou Eklypsis — on tranche ?</div>
+        <div class="q"><b>Q2</b>Mode clair (crème) ou crépuscule (navy) en défaut ?</div>
+        <div class="q"><b>Q3</b>Je pars de l'arborescence rectifiée (9 sections) — OK pour la valider d'abord ?</div>
+        <div class="q"><b>Q4</b>DS livré en CSS pur (variables + classes) ou React + tokens ?</div>
+        <div class="q"><b>Q5</b>Le site reste sur Next/Vercel ? Tu veux une planche de tokens exportable Figma aussi ?</div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <span class="serif">D'après le brief diagnostic · audit n° 01</span>
+      <span class="serif">À lire avant le cahier des tokens</span>
+      <span class="serif">Mai 2026</span>
+    </div>
+
+  </main>
+</body>
+</html>

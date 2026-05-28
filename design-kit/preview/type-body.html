@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 36px; font-family: var(--font-sans); }
+  .stack { display:flex; flex-direction: column; gap: 16px; }
+  .lede {
+    font-family: var(--font-sans); font-size: 19px; line-height: 1.5;
+    color: var(--ink-soft); max-width: 56ch;
+  }
+  .lede strong { color: var(--ink); font-weight: 500; }
+  .body {
+    font-family: var(--font-sans); font-size: 16px; line-height: 1.55;
+    color: var(--ink-soft); max-width: 60ch;
+  }
+  .meta {
+    display:flex; gap:18px; flex-wrap:wrap;
+    margin-top: 6px;
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--ink-mute); letter-spacing: .1em;
+  }
+  .meta span { padding: 4px 8px; border: 1px solid var(--rule); border-radius: 99px; }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <p class="lede">Succession, départ en résidence, déménagement. Nous orchestrons le tri, la valorisation et la transmission de votre patrimoine. <strong>Vous gardez la main, nous portons le reste.</strong></p>
+    <p class="body">Sans engagement, sous 24h. Un appel d'abord, une visite ensuite. Nous écoutons davantage que nous parlons. Au sortir : un devis détaillé, ligne par ligne.</p>
+  </div>
+  <div class="meta">
+    <span>Manrope</span>
+    <span>Lede · 19 / 1.5</span>
+    <span>Body · 16 / 1.55</span>
+    <span>--ink-soft</span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>Refonte — directions visuelles</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Manrope:wght@300..700&family=Hanken+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#0e0c08;color:#f3ecdd}
+  body{font-family:'Manrope',sans-serif;-webkit-font-smoothing:antialiased}
+
+  /* -------- Deck stage size: 1920x1080 -------- */
+  deck-stage{ --w:1920px; --h:1080px; }
+
+  section{
+    width:1920px;height:1080px;
+    overflow:hidden;
+    background:var(--bg, #f6f1e7);
+    color:var(--ink, #15110a);
+    font-family:'Manrope',sans-serif;
+    position:relative;
+  }
+
+  .label{
+    font-family:'Cormorant Garamond',serif;
+    font-size:16px;
+    letter-spacing:0;
+    text-transform:none;
+    color:var(--mute, #7a7165);
+    font-weight:500;
+    font-feature-settings:'lnum';
+  }
+
+  /* -------- COVER -------- */
+  .cover{
+    --bg:#efe9dc; --ink:#1f1a14; --mute:#7a7165; --accent:#a78060;
+    display:grid;
+    grid-template-rows:64px 1fr 64px;
+    padding:40px 80px;
+    column-gap:0;
+  }
+  .cover .strip-top, .cover .strip-bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    gap:24px;
+  }
+  .cover .strip-top{border-bottom:1px solid rgba(31,26,20,.18);padding-bottom:20px}
+  .cover .strip-bottom{border-top:1px solid rgba(31,26,20,.18);padding-top:20px}
+  .cover .strip-top .mono,
+  .cover .strip-bottom .mono{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:0;color:#7a7165;font-weight:500}
+  .cover .main{
+    display:grid;
+    grid-template-columns:1.15fr 1fr;
+    grid-template-rows:1fr auto;
+    gap:32px 72px;
+    align-items:stretch;
+    padding:40px 0 24px;
+  }
+  .cover .main .left{
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .cover h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:152px;
+    line-height:.9;
+    letter-spacing:-0.03em;
+    color:#1f1a14;
+    margin-top:32px;
+  }
+  .cover h1 em{font-style:normal;color:#1f1a14;font-weight:500}
+  .cover .lede{
+    font-size:19px;line-height:1.55;color:#4a4236;max-width:46ch;
+    margin-top:32px;
+  }
+  .cover .lede strong{color:#1f1a14;font-weight:500}
+  .cover .right-hero{
+    position:relative;border-radius:4px;overflow:hidden;
+    background:#d9c9a9;
+  }
+  .cover .right-hero .img{
+    position:absolute;inset:0;background-size:cover;background-position:center;
+  }
+  .cover .right-hero .badge{
+    position:absolute;left:28px;bottom:28px;right:28px;
+    display:flex;justify-content:space-between;gap:12px;
+    color:#fbf8f1;
+    font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:0;font-weight:500;
+    background:rgba(15,14,12,.55);backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    padding:12px 16px;border-radius:99px;
+    white-space:nowrap;
+  }
+  .cover .index-row{
+    grid-column:1/-1;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:18px;
+    margin-top:18px;
+  }
+  .cover .index-card{
+    padding:28px 32px;
+    background:#fbf8f1;border:1px solid rgba(31,26,20,.12);
+    border-radius:4px;
+    display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;
+  }
+  .cover .index-card .swatch-block{
+    width:72px;height:72px;border-radius:3px;
+    border:1px solid rgba(31,26,20,.1);
+  }
+  .cover .index-card .num{font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:0;color:#7a7165;font-weight:500}
+  .cover .index-card .nm{font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.05;color:#1f1a14;font-weight:500;letter-spacing:-0.02em}
+  .cover .index-card .nm em{font-style:normal;color:#1f1a14;font-weight:500}
+  .cover .index-card .who{font-size:14px;letter-spacing:0;color:#7a7165;font-family:'Cormorant Garamond',serif;margin-top:6px;font-weight:400}
+
+  /* -------- DIRECTION SLIDE (shared) -------- */
+  .direction{
+    display:grid;
+    grid-template-rows:72px 1fr 84px;
+    padding:48px 80px;
+  }
+  .direction .strip-top{
+    display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid rgba(31,26,20,.16);
+    padding-bottom:20px;
+  }
+  .direction .strip-top .brand{
+    font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:0;color:var(--ink);font-weight:500;
+  }
+  .direction .strip-bottom{
+    display:flex;align-items:center;gap:32px;
+    border-top:1px solid rgba(31,26,20,.16);
+    padding-top:24px;
+  }
+  .direction .strip-bottom .label{color:var(--mute);min-width:130px}
+  .direction .strip-bottom .codes{display:flex;gap:36px;flex:1;flex-wrap:wrap}
+  .direction .strip-bottom .code{
+    font-size:14px;color:var(--ink);
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .direction .strip-bottom .code::before{
+    content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);
+  }
+  .direction .body{
+    display:grid;
+    grid-template-columns:1.45fr 1fr;
+    gap:64px;
+    padding:48px 0;
+  }
+  .direction h2.dir-title{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:120px;
+    line-height:.93;
+    letter-spacing:-0.03em;
+    color:var(--ink);
+    margin-top:6px;
+  }
+  .direction h2.dir-title em{font-style:normal;color:var(--ink);font-weight:500}
+  .direction .tagline{
+    font-family:'Cormorant Garamond',serif;
+    font-size:18px;letter-spacing:0;
+    color:var(--mute);
+    margin-top:14px;
+    font-weight:500;
+  }
+  .direction .desc{
+    font-size:17.5px;line-height:1.55;color:var(--ink-soft, #4a4236);
+    margin-top:24px;max-width:42ch;
+  }
+  .direction .moodboard{
+    margin-top:36px;
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    grid-template-rows:repeat(2,150px);
+    gap:14px;
+  }
+  .direction .moodboard .m{
+    background-size:cover;background-position:center;
+    border-radius:3px;
+  }
+  .direction .moodboard .m1{grid-column:1/5;grid-row:1/3;height:auto}
+  .direction .moodboard .m2{grid-column:5/7;grid-row:1/2}
+  .direction .moodboard .m3{grid-column:5/6;grid-row:2/3}
+  .direction .moodboard .m4{grid-column:6/7;grid-row:2/3}
+
+  /* ---------- MATERIAL CARDS (used in moodboards alongside photos) ---------- */
+  .mat-card{
+    position:relative;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:14px;
+    border-radius:3px;
+  }
+  .mat-card .mat-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .mat-card .mat-hex,
+  .mat-card .mat-num{
+    font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:0;
+    opacity:.7;font-weight:500;
+  }
+  .mat-card .mat-name{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:30px;line-height:1;letter-spacing:-0.015em;
+    margin-top:auto;
+  }
+  .mat-card .mat-sub{
+    font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:0;
+    margin-top:4px;opacity:.75;font-weight:400;
+  }
+
+  /* light variant */
+  .mat-card.light{color:#1f1a14}
+  /* dark variant */
+  .mat-card.dark{color:#f3eadb}
+  /* warm tan card */
+  .mat-card.bg-cream{background:linear-gradient(135deg,#f6efde 0%,#ebe1c8 100%)}
+  .mat-card.bg-sand{background:linear-gradient(135deg,#d9c9a9 0%,#b8a282 100%)}
+  .mat-card.bg-linen{background:linear-gradient(135deg,#f0e8d5 0%,#dfd3b8 100%);background-image:linear-gradient(135deg,#f0e8d5 0%,#dfd3b8 100%),repeating-linear-gradient(90deg,rgba(0,0,0,.04) 0 1px,transparent 1px 3px)}
+  .mat-card.bg-brass{background:linear-gradient(135deg,#d6b27a 0%,#a6814d 60%,#6e4f2a 100%)}
+  .mat-card.bg-terracotta{background:linear-gradient(135deg,#c8845a 0%,#8e4a2b 100%)}
+  .mat-card.bg-wood{background:linear-gradient(135deg,#7c5a3a 0%,#3e2818 100%);background-image:linear-gradient(135deg,#7c5a3a 0%,#3e2818 100%),repeating-linear-gradient(90deg,rgba(0,0,0,.08) 0 2px,transparent 2px 8px)}
+  .mat-card.bg-paper{background:linear-gradient(135deg,#ebe1c8 0%,#d3c39c 100%)}
+  .mat-card.bg-stone{background:linear-gradient(135deg,#b8ab94 0%,#7e7561 100%)}
+  .mat-card.bg-peach{background:linear-gradient(135deg,#f5d8b8 0%,#d8a17a 100%)}
+  .mat-card.bg-caramel{background:linear-gradient(135deg,#c89876 0%,#7c5238 100%)}
+  .mat-card.bg-dawn{background:linear-gradient(180deg,#efd9c1 0%,#d49b7d 60%,#7a5443 100%)}
+  .mat-card.bg-night{background:linear-gradient(135deg,#1a2540 0%,#0a1124 100%)}
+  .mat-card.bg-velvet{background:linear-gradient(135deg,#2a3858 0%,#101a30 100%);background-image:linear-gradient(135deg,#2a3858 0%,#101a30 100%),radial-gradient(circle at 30% 30%,rgba(202,160,122,.18) 0%,transparent 60%)}
+  .mat-card.bg-brass-dark{background:linear-gradient(135deg,#ffb267 0%,#a3593a 100%)}
+  .mat-card.bg-ember{background:linear-gradient(135deg,#a3593a 0%,#3a1a10 100%)}
+
+  /* right column spec */
+  .direction .specs{display:flex;flex-direction:column;gap:36px}
+  .direction .specs .block{display:flex;flex-direction:column;gap:14px}
+  .direction .specs .block-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding-bottom:10px;border-bottom:1px solid rgba(31,26,20,.18);
+  }
+  .direction .swatches{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:6px;
+  }
+  .direction .swatches .sw{
+    display:flex;flex-direction:column;gap:8px;align-items:center;
+  }
+  .direction .swatches .dot{
+    width:54px;height:54px;border-radius:50%;
+    border:1px solid rgba(31,26,20,.12);
+  }
+  .direction .swatches .hex{
+    font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:0;color:var(--ink);font-weight:500;
+  }
+  .direction .type-sample{margin:6px 0 2px}
+  .direction .type-sub{font-size:14px;color:var(--mute);font-family:'Cormorant Garamond',serif;letter-spacing:0;font-weight:400}
+  .direction .logo-stage{
+    padding:36px 28px;
+    background:var(--logo-bg,#ffffff);
+    border-radius:4px;
+    border:1px solid rgba(31,26,20,.1);
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+    min-height:138px;
+  }
+
+  /* ---------- DIRECTION 01 — EB · Lumière & sérénité ---------- */
+  .eb-1{
+    --bg:#f6f1e7; --ink:#1f1a14; --ink-soft:#4a4236; --mute:#7a7165; --accent:#a78060;
+    --logo-bg:#fbf8f1;
+  }
+  .eb-1 .swatches .dot.s1{background:#faf6ec}
+  .eb-1 .swatches .dot.s2{background:#ece4d0}
+  .eb-1 .swatches .dot.s3{background:#c9bca0}
+  .eb-1 .swatches .dot.s4{background:#897e68}
+  .eb-1 .swatches .dot.s5{background:#1f1a14}
+
+  /* ---------- DIRECTION 02 — EB · Matière & seuil ---------- */
+  .eb-2{
+    --bg:#ebe2cd; --ink:#2d241b; --ink-soft:#564a39; --mute:#7e6f57; --accent:#9c6f47;
+    --logo-bg:#f4ecda;
+  }
+  .eb-2 .swatches .dot.s1{background:#f4ecda}
+  .eb-2 .swatches .dot.s2{background:#d9c9a9}
+  .eb-2 .swatches .dot.s3{background:#a78060}
+  .eb-2 .swatches .dot.s4{background:#5e4a36}
+  .eb-2 .swatches .dot.s5{background:#2d241b}
+
+  /* ---------- DIRECTION 03 — EK · Aube ---------- */
+  .ek-1{
+    --bg:#f7efe3; --ink:#3a2c20; --ink-soft:#5c4a3a; --mute:#8a7660; --accent:#c08163;
+    --logo-bg:#fbf5e9;
+  }
+  .ek-1 .swatches .dot.s1{background:#fbf5e9}
+  .ek-1 .swatches .dot.s2{background:#efd9c1}
+  .ek-1 .swatches .dot.s3{background:#d49b7d}
+  .ek-1 .swatches .dot.s4{background:#7a5443}
+  .ek-1 .swatches .dot.s5{background:#1f1a14}
+
+  /* ---------- DIRECTION 04 — EK · Velours ---------- */
+  .ek-2{
+    --bg:#0f1626; --ink:#f0e5cf; --ink-soft:#c0b59e; --mute:#7a7560; --accent:#ffb267;
+    --logo-bg:#1a2336;
+  }
+  .ek-2 .strip-top{border-bottom-color:rgba(240,229,207,.16)}
+  .ek-2 .strip-bottom{border-top-color:rgba(240,229,207,.16)}
+  .ek-2 .direction h2.dir-title,
+  .ek-2 h2.dir-title{
+    color:#f0e5cf;
+    font-family:'Newsreader',serif;
+    font-weight:500;
+    letter-spacing:-0.025em;
+  }
+  .ek-2 h2.dir-title em{color:#f0e5cf;font-weight:500;font-style:normal}
+  .ek-2 .swatches .dot.s1{background:#1a2336;border-color:rgba(240,229,207,.22)}
+  .ek-2 .swatches .dot.s2{background:#3a2820;border-color:rgba(240,229,207,.18)}
+  .ek-2 .swatches .dot.s3{background:#ffb267;border-color:rgba(240,229,207,.2)}
+  .ek-2 .swatches .dot.s4{background:#d9c9a9;border-color:rgba(240,229,207,.2)}
+  .ek-2 .swatches .dot.s5{background:#f3eadb;border-color:rgba(240,229,207,.3)}
+  .ek-2 .block-head{border-bottom-color:rgba(240,229,207,.2)}
+  .ek-2 .swatches .hex{color:#c0b59e}
+  .ek-2 .logo-stage{border-color:rgba(240,229,207,.18)}
+  .ek-2 .strip-bottom .code::before{background:#ffb267}
+
+  /* ---------- LOGO TREATMENTS ---------- */
+  .logo-eb-1{
+    display:flex;align-items:center;gap:28px;width:100%;justify-content:space-between;
+  }
+  .logo-eb-1 .wm{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+    font-size:48px;
+    letter-spacing:0.02em;
+    line-height:1;
+    color:#1f1a14;
+  }
+  .logo-eb-1 .wm em{font-style:normal;font-weight:500;color:#1f1a14;letter-spacing:0}
+  .logo-eb-1 .mono{
+    width:78px;height:78px;border-radius:50%;
+    border:1px solid #1f1a14;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;letter-spacing:.04em;color:#1f1a14;font-weight:400;
+    position:relative;
+  }
+  .logo-eb-1 .mono::before{
+    content:'';position:absolute;top:50%;left:8px;right:8px;height:1px;background:#1f1a14;transform:translateY(-50%);opacity:.08;
+  }
+
+  .logo-eb-2{
+    display:flex;align-items:center;gap:30px;width:100%;justify-content:space-between;
+  }
+  .logo-eb-2 .wm-stack{
+    display:flex;flex-direction:column;line-height:.95;
+  }
+  .logo-eb-2 .wm-stack .l1,
+  .logo-eb-2 .wm-stack .l2{
+    font-family:'Newsreader',serif;
+    font-weight:400;font-size:34px;letter-spacing:.32em;
+    text-transform:uppercase;color:#2d241b;
+  }
+  .logo-eb-2 .wm-stack .l2{margin-left:18px;color:#9c6f47}
+  .logo-eb-2 .wm-stack .rule{height:1px;width:60px;background:#2d241b;margin:6px 0 6px 18px;opacity:.5}
+  .logo-eb-2 .mark{
+    width:82px;height:82px;
+    border:1px solid #2d241b;
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  .logo-eb-2 .mark::before{
+    content:'';width:38px;height:38px;background:#9c6f47;
+  }
+  .logo-eb-2 .mark::after{
+    content:'eb';position:absolute;bottom:-22px;left:0;
+    font-family:'Newsreader',serif;font-size:11px;letter-spacing:.3em;color:#7e6f57;text-transform:uppercase;
+  }
+
+  .logo-ek-1{
+    display:flex;align-items:center;gap:24px;width:100%;justify-content:space-between;
+  }
+  .logo-ek-1 .wm{
+    position:relative;
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:60px;letter-spacing:0.005em;color:#3a2c20;line-height:1;
+  }
+  .logo-ek-1 .arc{
+    position:relative;width:64px;height:64px;
+  }
+  .logo-ek-1 .arc::before{
+    content:'';position:absolute;inset:0;
+    border-radius:50%;border:1px solid #3a2c20;
+  }
+  .logo-ek-1 .arc::after{
+    content:'';position:absolute;inset:0;
+    border-radius:50%;background:#c08163;
+    clip-path:polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+  }
+
+  .logo-ek-2{
+    display:flex;align-items:center;gap:28px;width:100%;justify-content:space-between;
+  }
+  .logo-ek-2 .eclipse{
+    position:relative;width:74px;height:74px;
+  }
+  .logo-ek-2 .eclipse .c1,
+  .logo-ek-2 .eclipse .c2{
+    position:absolute;border-radius:50%;
+  }
+  .logo-ek-2 .eclipse .c1{
+    inset:0;background:#ffb267;
+  }
+  .logo-ek-2 .eclipse .c2{
+    inset:0;background:#1a2336;border:1px solid #ffb267;transform:translateX(36%);
+  }
+  .logo-ek-2 .wm{
+    font-family:'Hanken Grotesk',sans-serif;font-weight:500;
+    font-size:34px;letter-spacing:.32em;text-transform:uppercase;
+    color:#f0e5cf;
+  }
+  .logo-ek-2 .wm .sub{
+    display:block;
+    font-family:'Hanken Grotesk',sans-serif;font-weight:300;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#ffb267;margin-top:8px;
+  }
+
+  /* ---------- LOGOS COMPARED SLIDE ---------- */
+  .logos-compared{
+    --bg:#f0e9da; --ink:#1f1a14; --mute:#7a7165;
+    padding:80px 96px;
+    display:grid;grid-template-rows:auto 1fr auto;gap:48px;
+  }
+  .logos-compared .header{
+    display:grid;grid-template-columns:1fr 2fr 1fr;align-items:baseline;gap:24px;
+    border-bottom:1px solid rgba(31,26,20,.18);padding-bottom:24px;
+  }
+  .logos-compared h2{
+    font-family:'Cormorant Garamond',serif;font-weight:500;font-size:88px;line-height:1;letter-spacing:-0.03em;
+    color:#1f1a14;
+  }
+  .logos-compared h2 em{font-style:normal;color:#1f1a14;font-weight:500}
+  .logos-compared .aside{font-size:15px;color:#4a4236;text-align:right}
+  .logos-compared .grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
+  }
+  .logo-card{
+    background:#fbf8f1;border:1px solid rgba(31,26,20,.1);
+    border-radius:4px;
+    padding:56px 64px;
+    display:grid;
+    grid-template-rows:auto 1fr auto;gap:32px;
+    min-height:520px;
+  }
+  .logo-card.dark{background:#0f1626;border-color:rgba(240,229,207,.16)}
+  .logo-card .lc-head{
+    display:flex;justify-content:space-between;align-items:baseline;gap:24px;
+    border-bottom:1px solid rgba(31,26,20,.1);padding-bottom:14px;
+  }
+  .logo-card.dark .lc-head{border-color:rgba(240,229,207,.16)}
+  .logo-card .lc-head .name{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;color:#1f1a14}
+  .logo-card.dark .lc-head .name{color:#f0e5cf}
+  .logo-card .lc-head .label{color:#7a7165}
+  .logo-card.dark .lc-head .label{color:#a0967c}
+  .logo-card .stage{display:flex;align-items:center;justify-content:center;min-height:160px}
+  .logo-card .lc-foot{display:flex;justify-content:space-between;gap:24px;font-size:13px;color:#4a4236}
+  .logo-card.dark .lc-foot{color:#c0b59e}
+
+  /* in compared slide, logo treatments need size adjustments */
+  .logo-card .logo-eb-1 .wm{font-size:58px}
+  .logo-card .logo-eb-1 .mono{width:92px;height:92px;font-size:32px}
+  .logo-card .logo-eb-2 .wm-stack .l1,
+  .logo-card .logo-eb-2 .wm-stack .l2{font-size:40px}
+  .logo-card .logo-eb-2 .mark{width:92px;height:92px}
+  .logo-card .logo-eb-2 .mark::before{width:44px;height:44px}
+  .logo-card .logo-ek-1 .wm{font-size:72px}
+  .logo-card .logo-ek-1 .arc{width:78px;height:78px}
+  .logo-card .logo-ek-2 .wm{font-size:38px}
+  .logo-card .logo-ek-2 .eclipse{width:84px;height:84px}
+
+  .logos-compared .strip-bottom{
+    display:flex;justify-content:space-between;gap:24px;align-items:center;
+    border-top:1px solid rgba(31,26,20,.18);padding-top:24px;
+  }
+  .logos-compared .next{font-size:18px;color:#4a4236;max-width:62ch}
+
+</style>
+</head>
+<body>
+<deck-stage>
+
+<!-- ============================ SLIDE 1 — COVER ============================ -->
+<section class="cover" data-screen-label="01 Cover">
+  <div class="strip-top">
+    <span class="mono">Préparé pour Eugenia · espace-blanc.com</span>
+    <span class="mono">Mai 2026 · V1</span>
+  </div>
+
+  <div class="main">
+    <div class="left">
+      <span class="label" style="display:block;margin-top:0">Refonte — exploration visuelle</span>
+      <h1>Deux directions,<br/><em>deux noms</em></h1>
+      <p class="lede">Une piste si l'on <strong>garde Espace Blanc</strong>, une piste si l'on <strong>bascule sur Eklipsis</strong>. Chaque direction décline une palette, une typographie, un univers photographique et un logo. À comparer à voix haute, à laisser reposer une nuit, à trancher ensemble.</p>
+    </div>
+
+    <div class="right-hero">
+      <div class="img" style="background-image:url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1400&auto=format&fit=crop&q=80')"></div>
+      <div class="badge">
+        <span>Cahier de directions</span>
+        <span>04 planches</span>
+      </div>
+    </div>
+
+    <div class="index-row">
+      <div class="index-card">
+        <div class="swatch-block" style="background:linear-gradient(135deg,#faf6ec 0%,#c9bca0 60%,#1f1a14 100%)"></div>
+        <div>
+          <span class="num">01 · Espace Blanc</span>
+          <span class="nm" style="display:block;margin-top:8px">Lumière &amp; sérénité</span>
+          <span class="who">Épure · douceur · confiance</span>
+        </div>
+      </div>
+      <div class="index-card">
+        <div class="swatch-block" style="background:linear-gradient(135deg,#f3eadb 0%,#ffb267 50%,#0f1626 100%)"></div>
+        <div>
+          <span class="num">02 · Eklipsis</span>
+          <span class="nm" style="display:block;margin-top:8px">Velours, la nuit calme</span>
+          <span class="who">Raffinement · tenue · confiance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip-bottom">
+    <span class="mono">D'après le brief diagnostic</span>
+    <span class="mono">À discuter</span>
+  </div>
+</section>
+
+
+<!-- ============================ SLIDE 2 — EB · LUMIÈRE & SÉRÉNITÉ ============================ -->
+<section class="direction eb-1" data-screen-label="02 EB · Lumière">
+  <div class="strip-top">
+    <span class="brand">Espace Blanc — on garde le nom</span>
+    <span class="label">Direction 01 / 02</span>
+  </div>
+
+  <div class="body">
+    <div class="left">
+      <span class="label">Direction 01 · Espace Blanc</span>
+      <h2 class="dir-title">Lumière<br/>&amp; sérénité</h2>
+      <p class="tagline">Épure · Douceur · Confiance</p>
+      <p class="desc">Le blanc devient ce qu'il dit : la marge, la lumière qui entre, le silence qui suit. Une posture sereine et précise, sans pathos. Des photographies d'intérieurs en plein jour, du bois clair, du lin, du laiton.</p>
+
+      <div class="moodboard">
+        <div class="m m1" style="background-image:url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&auto=format&fit=crop&q=80')"></div>
+        <div class="m m2" style="background-image:url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=800&auto=format&fit=crop&q=80')"></div>
+        <div class="m m3 mat-card light bg-linen">
+          <div class="mat-top"><span class="mat-hex">ECE4D0</span><span class="mat-num">02</span></div>
+          <div class="mat-name">Lin</div>
+          <div class="mat-sub">Lavé · plié</div>
+        </div>
+        <div class="m m4 mat-card light bg-brass">
+          <div class="mat-top"><span class="mat-hex" style="color:#fbf8f1">A6814D</span><span class="mat-num" style="color:#fbf8f1">03</span></div>
+          <div class="mat-name" style="color:#fbf8f1">Laiton</div>
+          <div class="mat-sub" style="color:#fbf8f1">Poli · mat</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right specs">
+      <div class="block">
+        <div class="block-head"><span class="label">Palette</span><span class="label">05</span></div>
+        <div class="swatches">
+          <div class="sw"><span class="dot s1"></span><span class="hex">FAF6EC</span></div>
+          <div class="sw"><span class="dot s2"></span><span class="hex">ECE4D0</span></div>
+          <div class="sw"><span class="dot s3"></span><span class="hex">C9BCA0</span></div>
+          <div class="sw"><span class="dot s4"></span><span class="hex">897E68</span></div>
+          <div class="sw"><span class="dot s5"></span><span class="hex">1F1A14</span></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><span class="label">Typographies</span><span class="label">02</span></div>
+        <div>
+          <div class="type-sample" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:48px;line-height:1;color:var(--ink);letter-spacing:-0.025em">Cormorant Garamond</div>
+          <span class="type-sub">Pour les titres · weight 600</span>
+        </div>
+        <div>
+          <div class="type-sample" style="font-family:'Manrope',sans-serif;font-weight:400;font-size:22px;line-height:1.3;color:var(--ink);letter-spacing:-0.005em">Manrope — pour les textes courants</div>
+          <span class="type-sub">Pour les textes</span>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><span class="label">Logo</span><span class="label">Pré-visu</span></div>
+        <div class="logo-stage">
+          <div class="logo-eb-1">
+            <span class="wm">Espace <em>Blanc</em></span>
+            <span class="mono">EB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip-bottom">
+    <span class="label">Codes visuels</span>
+    <div class="codes">
+      <span class="code">Tons clairs et neutres tirés vers le sable</span>
+      <span class="code">Photographies de plein jour, sans dramatisation</span>
+      <span class="code">Typographie élégante, généreuse en blanc</span>
+      <span class="code">Détails laiton, lin, bois clair</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================ SLIDE 3 — EK · VELOURS ============================ -->
+<section class="direction ek-2" data-screen-label="03 EK · Velours">
+  <div class="strip-top">
+    <span class="brand" style="color:#f0e5cf">Eklipsis — on bascule</span>
+    <span class="label" style="color:#a0967c">Direction 02 / 02</span>
+  </div>
+
+  <div class="body">
+    <div class="left">
+      <span class="label" style="color:#a0967c">Direction 02 · Eklipsis</span>
+      <h2 class="dir-title">Velours,<br/>la nuit calme</h2>
+      <p class="tagline" style="color:#a0967c">Confiance · Raffinement · Tenue</p>
+      <p class="desc" style="color:#c0b59e">L'autre versant de l'éclipse : la nuit qui tient. Bleu profond, ivoire chaud, terre brûlée. Une posture haut de gamme et tenue, pour les successions importantes, les patrimoines à honorer. Du laiton sur du bleu.</p>
+
+      <div class="moodboard">
+        <div class="m m1" style="background-image:url('https://images.unsplash.com/photo-1499346030926-9a72daac6c63?w=1200&auto=format&fit=crop&q=80')"></div>
+        <div class="m m2 mat-card dark bg-velvet">
+          <div class="mat-top"><span class="mat-hex">0F1626</span><span class="mat-num">02</span></div>
+          <div class="mat-name" style="color:#ffb267">Velours</div>
+          <div class="mat-sub" style="color:#ffb267">Profond · feutré</div>
+        </div>
+        <div class="m m3 mat-card dark bg-brass-dark">
+          <div class="mat-top"><span class="mat-hex" style="color:#1a2336">FFB267</span><span class="mat-num" style="color:#1a2336">03</span></div>
+          <div class="mat-name" style="color:#1a2336">Laiton</div>
+          <div class="mat-sub" style="color:#1a2336">Sur bleu</div>
+        </div>
+        <div class="m m4 mat-card dark bg-ember">
+          <div class="mat-top"><span class="mat-hex">3A2820</span><span class="mat-num">04</span></div>
+          <div class="mat-name">Terre</div>
+          <div class="mat-sub">Brûlée</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right specs">
+      <div class="block">
+        <div class="block-head"><span class="label" style="color:#a0967c">Palette</span><span class="label" style="color:#a0967c">05</span></div>
+        <div class="swatches">
+          <div class="sw"><span class="dot s1"></span><span class="hex">0F1626</span></div>
+          <div class="sw"><span class="dot s2"></span><span class="hex">3A2820</span></div>
+          <div class="sw"><span class="dot s3"></span><span class="hex">FFB267</span></div>
+          <div class="sw"><span class="dot s4"></span><span class="hex">D9C9A9</span></div>
+          <div class="sw"><span class="dot s5"></span><span class="hex">F3EADB</span></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><span class="label" style="color:#a0967c">Typographies</span><span class="label" style="color:#a0967c">02</span></div>
+        <div>
+          <div class="type-sample" style="font-family:'Newsreader',serif;font-weight:500;font-size:48px;line-height:1;color:#f0e5cf;letter-spacing:-0.025em">Newsreader</div>
+          <span class="type-sub" style="color:#a0967c">Pour les titres · weight 600</span>
+        </div>
+        <div>
+          <div class="type-sample" style="font-family:'Hanken Grotesk',sans-serif;font-weight:400;font-size:22px;line-height:1.3;color:#f0e5cf">Hanken Grotesk — pour les textes</div>
+          <span class="type-sub" style="color:#a0967c">Pour les textes</span>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><span class="label" style="color:#a0967c">Logo</span><span class="label" style="color:#a0967c">Pré-visu</span></div>
+        <div class="logo-stage">
+          <div class="logo-ek-2">
+            <div class="eclipse"><span class="c1"></span><span class="c2"></span></div>
+            <div class="wm">Eklipsis<span class="sub">le passage, en de bonnes mains.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip-bottom">
+    <span class="label" style="color:#a0967c">Codes visuels</span>
+    <div class="codes">
+      <span class="code" style="color:#c0b59e">Bleu nuit, ivoire chaud, laiton</span>
+      <span class="code" style="color:#c0b59e">Photographies à la bougie, à la lampe</span>
+      <span class="code" style="color:#c0b59e">Italiques affirmés, capitales serrées</span>
+      <span class="code" style="color:#c0b59e">Compositions tenues, presque cérémonielles</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================ SLIDE 4 — LOGOS COMPARÉS ============================ -->
+<section class="logos-compared" data-screen-label="04 Logos">
+  <div class="header">
+    <span class="label">04 / 04 · Pour comparer</span>
+    <h2>Deux signatures</h2>
+    <span class="aside">Chaque logo s'inscrit dans une direction. Aucun n'est définitif. Les essais à voix haute, au téléphone, en signature mail font le reste.</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- EB Direction 1 -->
+    <div class="logo-card">
+      <div class="lc-head">
+        <span class="name">Espace Blanc</span>
+        <span class="label">Lumière &amp; sérénité</span>
+      </div>
+      <div class="stage">
+        <div class="logo-eb-1">
+          <span class="wm">Espace <em>Blanc</em></span>
+          <span class="mono">EB</span>
+        </div>
+      </div>
+      <div class="lc-foot">
+        <span>Cormorant Garamond — wordmark + monogramme cerclé.</span>
+        <span>Posture éditoriale, discrète, haut de gamme.</span>
+      </div>
+    </div>
+
+    <!-- EK Direction 2 -->
+    <div class="logo-card dark">
+      <div class="lc-head">
+        <span class="name">Eklipsis</span>
+        <span class="label">Velours</span>
+      </div>
+      <div class="stage">
+        <div class="logo-ek-2">
+          <div class="eclipse"><span class="c1"></span><span class="c2"></span></div>
+          <div class="wm">Eklipsis<span class="sub">le passage, en de bonnes mains.</span></div>
+        </div>
+      </div>
+      <div class="lc-foot">
+        <span>Hanken Grotesk en capitales, éclipse en monogramme.</span>
+        <span>Posture haut de gamme, tenue, presque luxe.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="strip-bottom">
+    <span class="next">Pour avancer : on choisit ensemble la direction qui résonne. Je décline ensuite la home, l'identité complète et un kit de communication.</span>
+    <span class="label"></span>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+</body>
+</html>

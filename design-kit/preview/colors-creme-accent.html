@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 32px; font-family: var(--font-sans); }
+  .grid {
+    display:grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 0; border-radius: var(--radius-xs); overflow:hidden;
+    border: 1px solid var(--rule);
+  }
+  .swatch {
+    height: 132px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding: 14px 16px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+  }
+  .swatch .name {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 17px; letter-spacing: 0; text-transform: none;
+  }
+  .swatch .role {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 11px; color: inherit; opacity: .8;
+    text-transform: none; letter-spacing: 0;
+    margin-top: 2px;
+  }
+  .meta {
+    margin-top: 16px;
+    display:flex; justify-content:space-between; gap:24px;
+    font-family: var(--font-serif); font-style: italic; font-size: 14px;
+    color: var(--ink-mute);
+  }
+  .meta b { font-style:normal; color: var(--ink); font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="swatch" style="background:#a78060; color:#fbf8f1">
+      <div>
+        <span class="name">Accent</span>
+        <div class="role">Bronze chaud · liens, italiques</div>
+      </div>
+      <span>#a78060 · --accent</span>
+    </div>
+    <div class="swatch" style="background:#8a6647; color:#fbf8f1">
+      <span class="name">Deep</span>
+      <span>#8a6647 · --accent-deep</span>
+    </div>
+    <div class="swatch" style="background:#5a7a3a; color:#fbf8f1">
+      <span class="name">OK</span>
+      <span>#5a7a3a · --ok</span>
+    </div>
+    <div class="swatch" style="background:#c2452a; color:#fbf8f1">
+      <span class="name">Warn</span>
+      <span>#c2452a · --warn</span>
+    </div>
+  </div>
+  <div class="meta">
+    <span><b>Accent &amp; sémantique</b> · une seule couleur d'appui</span>
+    <span>Sémantique = états UI uniquement</span>
+  </div>
+</body>
+</html>

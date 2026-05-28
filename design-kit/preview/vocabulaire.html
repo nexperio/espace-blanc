@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper-3); }
+  body { padding: 36px 56px; font-family: var(--font-sans); }
+
+  .head{
+    display:grid; grid-template-columns: 1fr 2.2fr 1fr;
+    gap: 24px; align-items: baseline;
+    margin-bottom: 32px;
+  }
+  .eyebrow{
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .title{
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 48px; line-height: 1; letter-spacing: -0.02em;
+    color: var(--ink); margin: 0;
+  }
+  .title em{ font-style: italic; color: var(--accent); font-weight: 500; }
+  .aside{
+    text-align: right;
+    font-family: var(--font-sans); font-style: italic; font-size: 13px;
+    color: var(--ink-mute); max-width: 24ch; justify-self: end;
+  }
+
+  .cols{ display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .col-label{
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: 18px;
+  }
+  .words{
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 32px; line-height: 1.35; letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .words .sep{ color: var(--ink-mute); margin: 0 4px; font-style: normal; }
+  .words--bad{
+    color: var(--ink-mute);
+    text-decoration: line-through;
+    text-decoration-color: var(--ink-mute);
+    text-decoration-thickness: 1px;
+  }
+</style>
+</head>
+<body>
+  <header class="head">
+    <span class="eyebrow">Vocabulaire</span>
+    <h2 class="title">Les mots <em>que nous tenons</em></h2>
+    <span class="aside">Et ceux que nous n'employons pas.</span>
+  </header>
+  <div class="cols">
+    <div>
+      <div class="col-label">Mots oui</div>
+      <p class="words">passage<span class="sep">·</span>allègement<span class="sep">·</span>valoriser<span class="sep">·</span>transmettre<span class="sep">·</span>soigner<span class="sep">·</span>mesurer<span class="sep">·</span>respecter<span class="sep">·</span>soulager<span class="sep">·</span>restituer</p>
+    </div>
+    <div>
+      <div class="col-label">Mots non</div>
+      <p class="words words--bad">débarras<span class="sep">·</span>vide-grenier<span class="sep">·</span>ramassage<span class="sep">·</span>lot<span class="sep">·</span>encombrant<span class="sep">·</span>enlèvement</p>
+    </div>
+  </div>
+</body>
+</html>

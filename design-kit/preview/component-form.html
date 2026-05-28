@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 36px; font-family: var(--font-sans); }
+  .grid { display:grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .field { display:flex; flex-direction:column; gap: 6px; }
+  .field label{
+    font-family: var(--font-serif); font-size: 14px; font-style: italic;
+    color: var(--ink-mute);
+  }
+  .field input, .field textarea{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--ink);
+    padding: 10px 0;
+    font-family: var(--font-serif); font-size: 18px;
+    color: var(--ink);
+    outline: none;
+  }
+  .field input::placeholder{ color: var(--ink-mute); font-style: italic; }
+  .field input:focus{ border-color: var(--accent); }
+  .field .hint{
+    font-family: var(--font-sans); font-size: 12px; color: var(--ink-mute);
+  }
+  .field.has-error input{ border-color: var(--warn); }
+  .field.has-error .hint{ color: var(--warn); }
+  .meta {
+    margin-top: 24px;
+    display:flex; gap:18px; flex-wrap:wrap;
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--ink-mute); letter-spacing: .1em;
+  }
+  .meta span { padding: 4px 8px; border: 1px solid var(--rule); border-radius: 99px; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="field">
+      <label>Adresse e-mail</label>
+      <input type="email" value="sophie.l@exemple.fr" />
+      <span class="hint">Réponse sous 24 h ouvrées.</span>
+    </div>
+    <div class="field has-error">
+      <label>Téléphone</label>
+      <input type="tel" placeholder="06 …" />
+      <span class="hint">Champ requis pour le rappel.</span>
+    </div>
+  </div>
+  <div class="meta">
+    <span>Underline-only · pas de box</span>
+    <span>Focus → --accent</span>
+    <span>Error → --warn</span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 36px; font-family: var(--font-sans); }
+  .row { display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+  .demo {
+    display:flex; flex-direction: column; gap: 10px;
+    align-items: flex-start;
+  }
+  .demo .shape {
+    width: 88px; height: 56px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+  }
+  .shape.xs { border-radius: 2px }
+  .shape.sm { border-radius: 4px }
+  .shape.md { border-radius: 6px }
+  .shape.pill { border-radius: 999px; width: 110px; height: 36px; background: var(--ink); }
+  .label-pair { display: flex; flex-direction: column; gap: 2px; }
+  .label-pair .name {
+    font-family: var(--font-serif); font-style: italic; font-size: 14px; color: var(--ink);
+  }
+  .label-pair .tok {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: .08em; color: var(--ink-mute);
+  }
+  .rules { display:flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+  .rule-line { display:flex; align-items:center; gap: 14px; }
+  .rule-line .demo-line { flex:1; height: 0; }
+  .rule-line.hair .demo-line { border-top: 1px solid var(--rule); }
+  .rule-line.strong .demo-line { border-top: 1px solid var(--ink); }
+  .rule-line.soft .demo-line { border-top: 1px solid var(--rule-soft); }
+  .rule-line span {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: .08em; color: var(--ink-mute);
+    min-width: 180px; text-align: right;
+  }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="demo">
+      <div class="shape xs"></div>
+      <div class="label-pair">
+        <span class="name">Cards, champs</span>
+        <span class="tok">--radius-xs · 2px</span>
+      </div>
+    </div>
+    <div class="demo">
+      <div class="shape md"></div>
+      <div class="label-pair">
+        <span class="name">Blocs proéminents</span>
+        <span class="tok">--radius-md · 6px</span>
+      </div>
+    </div>
+    <div class="demo">
+      <div class="shape pill"></div>
+      <div class="label-pair">
+        <span class="name">CTAs pill</span>
+        <span class="tok">--radius-pill · 999px</span>
+      </div>
+    </div>
+  </div>
+  <div class="rules">
+    <div class="rule-line hair">
+      <div class="demo-line"></div>
+      <span>--rule · hairline</span>
+    </div>
+    <div class="rule-line strong">
+      <div class="demo-line"></div>
+      <span>1px solid --ink · règle forte</span>
+    </div>
+    <div class="rule-line soft">
+      <div class="demo-line"></div>
+      <span>--rule-soft · faible</span>
+    </div>
+  </div>
+</body>
+</html>

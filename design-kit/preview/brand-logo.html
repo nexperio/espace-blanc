@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 48px 56px; font-family: var(--font-sans); }
+  .row { display:flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .bg{ display:flex; flex-direction:column; gap: 10px; }
+  .bg .frame{
+    padding: 24px 28px;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-xs);
+    display:flex; align-items:center;
+    min-width: 280px; min-height: 88px;
+  }
+  .bg.navy .frame{ background: var(--brand-blue); border-color: var(--brand-blue); }
+  .bg.cream .frame{ background: var(--paper); }
+  .bg.paper2 .frame{ background: var(--paper-2); }
+  .bg.ink .frame{ background: var(--ink); border-color: var(--ink); }
+  img.logo{ display: block; height: 44px; width: auto; }
+  .cap{
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="bg navy">
+      <div class="frame"><img class="logo" src="../assets/logo-espace-blanc.png" alt="Espace Blanc"/></div>
+      <span class="cap">Sur tétière · --brand-blue</span>
+    </div>
+    <div class="bg paper2">
+      <div class="frame"><img class="logo" src="../assets/logo-espace-blanc.png" alt="Espace Blanc"/></div>
+      <span class="cap">Sur surface --paper-2 (note : variante claire à produire)</span>
+    </div>
+    <div class="bg ink">
+      <div class="frame"><img class="logo" src="../assets/logo-espace-blanc.png" alt="Espace Blanc"/></div>
+      <span class="cap">Sur --ink (compatible)</span>
+    </div>
+  </div>
+</body>
+</html>

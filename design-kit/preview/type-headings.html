@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 36px; font-family: var(--font-sans); }
+  .stack { display:flex; flex-direction: column; gap: 18px; }
+  .h2 {
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 48px; line-height: 1.05; letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .h2 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .h3 {
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 24px; line-height: 1.2; letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .h3 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .meta {
+    display:flex; gap:18px; flex-wrap:wrap;
+    margin-top: 4px;
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--ink-mute); letter-spacing: .1em;
+  }
+  .meta span { padding: 4px 8px; border: 1px solid var(--rule); border-radius: 99px; }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <div class="h2">Quatre temps, <em>une cadence.</em></div>
+    <div class="h3">Diagnostic, tri, valorisation, <em>restitution.</em></div>
+  </div>
+  <div class="meta">
+    <span>H2 · 48 / 1.05</span>
+    <span>H3 · 24 / 1.2</span>
+    <span>Italique = --accent</span>
+    <span>1 italique par titre max</span>
+  </div>
+</body>
+</html>

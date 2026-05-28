@@ -1,0 +1,278 @@
+/* =====================================================================
+   Espace Blanc — Design tokens
+   ---------------------------------------------------------------------
+   Two modes:
+     • Default = Crème (mode jour, papier crème + encre brune)
+     • [data-mode="crepuscule"] = Crépuscule (mode nuit, navy + terre cuite)
+
+   Switch via <html data-mode="crepuscule"> or <body data-mode="crepuscule">.
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ---------------------------------------------------------------------
+   1. CRÈME — mode jour (par défaut)
+   --------------------------------------------------------------------- */
+:root,
+:root[data-mode="creme"]{
+  /* --- Surfaces : papiers --- */
+  --paper:        #efe9dc;   /* page background */
+  --paper-2:      #fbf8f1;   /* cards, raised surfaces */
+  --paper-3:      #e8e0cf;   /* deeper cream — hover, sidebars */
+  --paper-inv:    #1f1a14;   /* inverted bg (footer, hero noir) */
+
+  /* --- Encres : texte (bleu nuit, plus élégant que noir) --- */
+  --ink:          #1c3559;   /* primary text — navy */
+  --ink-soft:     #3a4a6b;   /* body soft / secondary text */
+  --ink-mute:     #6e7891;   /* labels, captions, metadata */
+  --ink-inv:      #fbf8f1;   /* text on dark surfaces */
+
+  /* --- Accent : orange marque (logo EB) --- */
+  --accent:       #ed710c;   /* primary accent (links, italic emphasis) */
+  --accent-deep:  #c95a05;   /* hover / pressed */
+  --accent-soft:  #f5b380;   /* subtle backgrounds, illustrations */
+
+  /* --- Bleu de marque : tétière, encadrés institutionnels --- */
+  --brand-blue:      #1c3559;   /* navy d'imprimeur, lit Crème */
+  --brand-blue-deep: #142544;   /* hover, footer institutionnel */
+
+  /* --- Lignes : règles --- */
+  --rule:         rgba(31, 26, 20, .18);  /* hairline divider */
+  --rule-soft:    rgba(31, 26, 20, .08);  /* softer divider */
+  --rule-strong:  rgba(31, 26, 20, .40);  /* strong divider (page top/bot) */
+
+  /* --- Sémantique --- */
+  --ok:           #5a7a3a;   /* certificat, validé */
+  --warn:         #c2452a;   /* erreur, alerte */
+  --info:         #1c3559;   /* info bleue (alt accent) */
+
+  /* --- Ombres : très subtiles, papier --- */
+  --shadow-sm:    0  4px 12px -8px rgba(31,26,20,.18);
+  --shadow-md:    0 20px 40px -24px rgba(31,26,20,.22);
+  --shadow-lg:    0 30px 60px -28px rgba(31,26,20,.30);
+}
+
+/* ---------------------------------------------------------------------
+   2. CRÉPUSCULE — mode nuit (bascule)
+   --------------------------------------------------------------------- */
+:root[data-mode="crepuscule"],
+[data-mode="crepuscule"]{
+  /* --- Surfaces --- */
+  --paper:        #0f1626;
+  --paper-2:      #1a2540;
+  --paper-3:      #15203b;
+  --paper-inv:    #f3ecdd;
+
+  /* --- Encres --- */
+  --ink:          #f3ecdd;
+  --ink-soft:     #d6c9a8;
+  --ink-mute:     #8a826e;
+  --ink-inv:      #0f1626;
+
+  /* --- Accent : orange marque (logo EB) sur fond nuit --- */
+  --accent:       #ed710c;
+  --accent-deep:  #c95a05;
+  --accent-soft:  #7a3a10;
+
+  /* --- Règles --- */
+  --rule:         rgba(243, 236, 221, .16);
+  --rule-soft:    rgba(243, 236, 221, .06);
+  --rule-strong:  rgba(243, 236, 221, .35);
+
+  /* --- Sémantique --- */
+  --ok:           #8aa86a;
+  --warn:         #e07560;
+  --info:         #6f8db8;
+
+  /* --- Ombres : portées profondes, nuit --- */
+  --shadow-sm:    0  4px 12px -8px rgba(0,0,0,.45);
+  --shadow-md:    0 20px 40px -24px rgba(0,0,0,.55);
+  --shadow-lg:    0 30px 60px -28px rgba(0,0,0,.65);
+}
+
+/* ---------------------------------------------------------------------
+   3. TYPOGRAPHIE — familles + échelle
+   --------------------------------------------------------------------- */
+:root{
+  --font-serif:   'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+  --font-sans:    'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:    'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+  /* Échelle géométrique (ratio ~1.25, tronquée pour l'UI) */
+  --text-xs:      12px;
+  --text-sm:      14px;
+  --text-base:    16px;
+  --text-lg:      19px;
+  --text-xl:      24px;
+  --text-2xl:     32px;
+  --text-3xl:     48px;
+  --text-4xl:     72px;
+  --text-display: clamp(56px, 7vw, 120px);
+
+  /* Line-height */
+  --leading-tight:  1.05;   /* display, titles */
+  --leading-snug:   1.2;    /* H2, H3 */
+  --leading-normal: 1.55;   /* body */
+  --leading-loose:  1.7;    /* long-form prose */
+
+  /* Letter-spacing */
+  --tracking-display: -0.03em;
+  --tracking-tight:   -0.015em;
+  --tracking-normal:  0;
+  --tracking-label:   0.22em;  /* mono labels uppercase */
+
+  /* Poids */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+}
+
+/* ---------------------------------------------------------------------
+   4. ESPACEMENTS — grille de 8
+   --------------------------------------------------------------------- */
+:root{
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  16px;
+  --space-4:  24px;
+  --space-5:  32px;
+  --space-6:  48px;
+  --space-7:  64px;
+  --space-8:  96px;
+  --space-9:  128px;
+
+  /* Container */
+  --container-max:  1240px;
+  --container-pad:  64px;      /* desktop */
+  --container-pad-mobile: 24px;
+
+  /* Section vertical rhythm */
+  --section-y-sm:  48px;
+  --section-y-md:  72px;
+  --section-y-lg:  96px;
+  --section-y-xl:  128px;
+}
+
+/* ---------------------------------------------------------------------
+   5. RAYONS, BORDURES, TRANSITIONS
+   --------------------------------------------------------------------- */
+:root{
+  --radius-none:  0;
+  --radius-xs:    2px;     /* cards, fields — Espace Blanc reste très peu arrondi */
+  --radius-sm:    4px;
+  --radius-md:    6px;
+  --radius-pill:  999px;   /* CTAs */
+
+  --border-hair:   1px solid var(--rule);
+  --border-soft:   1px solid var(--rule-soft);
+  --border-strong: 1px solid var(--ink);
+
+  --ease-out:    cubic-bezier(.2, .7, .2, 1);
+  --ease-in-out: cubic-bezier(.4, 0, .2, 1);
+  --dur-fast:    .15s;
+  --dur-base:    .25s;
+  --dur-slow:    .35s;
+}
+
+/* =====================================================================
+   6. CLASSES SÉMANTIQUES — utilitaires de base
+   ===================================================================== */
+html, body{
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Display & titles (serif) ---- */
+.eb-display{
+  font-family: var(--font-serif);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-display);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  color: var(--ink);
+}
+.eb-h1{
+  font-family: var(--font-serif);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+}
+.eb-h2{
+  font-family: var(--font-serif);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+.eb-h3{
+  font-family: var(--font-serif);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+}
+.eb-italic{
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: var(--weight-medium);
+  color: var(--accent);
+}
+
+/* ---- Body (sans) ---- */
+.eb-lede{
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 48ch;
+}
+.eb-body{
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--ink-soft);
+}
+.eb-small{
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--ink-mute);
+}
+
+/* ---- Label (serif italic à la cursive éditoriale) ---- */
+.eb-label{
+  font-family: var(--font-serif);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  font-style: italic;
+  color: var(--ink-mute);
+  letter-spacing: 0;
+}
+
+/* ---- Mono (chiffres, références, codes) ---- */
+.eb-mono{
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+/* ---- Drop-cap (lettrine éditoriale) ---- */
+.eb-drop-cap::first-letter{
+  font-family: var(--font-serif);
+  font-weight: var(--weight-medium);
+  font-size: 5.2em;
+  line-height: 0.85;
+  float: left;
+  padding: 6px 12px 0 0;
+  color: var(--accent);
+}

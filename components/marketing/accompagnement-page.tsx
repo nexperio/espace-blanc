@@ -464,7 +464,7 @@ export function AccompagnementPage({ which }: { which: AccompKey }) {
                     >
                       {it}
                     </span>
-                    <span style={{ color: "#d8702a" }}>
+                    <span style={{ color: "var(--accent)" }}>
                       <Icon name="check" size={20} />
                     </span>
                   </li>

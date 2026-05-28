@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr" data-mode="crepuscule">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 32px; font-family: var(--font-sans); }
+  .row { display:flex; gap:0; border-radius: var(--radius-xs); overflow:hidden; border: 1px solid var(--rule); }
+  .swatch {
+    flex:1; height: 132px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding: 14px 16px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+  }
+  .swatch .name {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 17px; letter-spacing: 0; text-transform: none;
+  }
+  .meta {
+    margin-top: 16px;
+    display:flex; justify-content:space-between; gap:24px;
+    font-family: var(--font-serif); font-style: italic; font-size: 14px;
+    color: var(--ink-mute);
+  }
+  .meta b { font-style:normal; color: var(--ink); font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="swatch" style="background:#0f1626; color:#f3ecdd">
+      <span class="name">Paper</span>
+      <span>#0f1626 · --paper</span>
+    </div>
+    <div class="swatch" style="background:#1a2540; color:#f3ecdd">
+      <span class="name">Paper 2</span>
+      <span>#1a2540 · --paper-2</span>
+    </div>
+    <div class="swatch" style="background:#caa07a; color:#0f1626">
+      <span class="name">Accent</span>
+      <span>#caa07a · --accent</span>
+    </div>
+    <div class="swatch" style="background:#d6c9a8; color:#0f1626">
+      <span class="name">Ink soft</span>
+      <span>#d6c9a8 · --ink-soft</span>
+    </div>
+    <div class="swatch" style="background:#f3ecdd; color:#0f1626">
+      <span class="name">Ink</span>
+      <span>#f3ecdd · --ink</span>
+    </div>
+  </div>
+  <div class="meta">
+    <span><b>Mode Crépuscule</b> · velours, la nuit calme</span>
+    <span>Activé par <tt>[data-mode="crepuscule"]</tt></span>
+  </div>
+</body>
+</html>

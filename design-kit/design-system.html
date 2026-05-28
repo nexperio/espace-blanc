@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="fr" data-mode="creme">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Espace Blanc — Design System</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html, body { background: var(--paper); color: var(--ink); font-family: var(--font-sans); }
+  body { padding-bottom: 120px; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 64px; }
+
+  /* Top strip */
+  .top { display: flex; justify-content: space-between; align-items: center; padding: 14px 64px; border-bottom: 1px solid var(--rule); color: var(--ink-mute); }
+  .top .left { display: flex; gap: 18px; align-items: center; }
+  .top .logo { height: 28px; background: var(--brand-blue); padding: 4px 8px; border-radius: 2px; }
+  .top .right { display: flex; gap: 14px; align-items: center; }
+  .top button.mode { font-family: var(--font-serif); font-style: italic; font-size: 14px; color: var(--ink); border: 1px solid var(--rule); padding: 6px 14px; border-radius: 999px; background: var(--paper); transition: all .2s ease; }
+  .top button.mode:hover { background: var(--brand-blue); color: #fbf8f1; border-color: var(--brand-blue); }
+  .top .serif { font-family: var(--font-serif); font-style: italic; font-size: 14px; }
+
+  /* Hero */
+  .hero { padding: 64px 64px 96px; border-bottom: 1px solid var(--rule); }
+  .hero .grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; align-items: end; }
+  .hero h1 { font-family: var(--font-serif); font-weight: 500; font-size: clamp(64px, 8vw, 132px); line-height: 0.88; letter-spacing: -0.03em; color: var(--ink); }
+  .hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .hero .meta { margin-top: 32px; display: grid; grid-template-columns: auto 1fr; gap: 8px 24px; font-family: var(--font-sans); font-size: 14px; padding-top: 18px; border-top: 1px solid var(--rule); }
+  .hero .meta dt { color: var(--ink-mute); font-family: var(--font-serif); font-style: italic; font-size: 15px; }
+  .hero .meta dd { color: var(--ink-soft); }
+  .hero .lede { font-family: var(--font-sans); font-size: 19px; line-height: 1.55; color: var(--ink-soft); max-width: 46ch; }
+  .hero .lede strong { color: var(--ink); font-weight: 500; }
+
+  .label { font-family: var(--font-serif); font-style: italic; font-size: 14px; color: var(--ink-mute); }
+  .mono { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); }
+
+  /* TOC */
+  .toc { display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 22px 64px; gap: 24px; }
+  .toc a { display: flex; flex-direction: column; gap: 6px; }
+  .toc .n { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--ink-mute); }
+  .toc .t { font-family: var(--font-serif); font-size: 22px; font-weight: 500; letter-spacing: -0.01em; line-height: 1; }
+
+  /* Sections */
+  section { padding: 96px 64px; border-bottom: 1px solid var(--rule); }
+  section.dark { background: var(--brand-blue); color: #fbf8f1; border-bottom-color: var(--brand-blue-deep); }
+  section.dark .label, section.dark .mono { color: rgba(251, 248, 241, 0.62); }
+  section.dark h2 { color: #fbf8f1; }
+  .heading { display: grid; grid-template-columns: 1fr 2.4fr; gap: 48px; margin-bottom: 64px; align-items: end; }
+  .heading .left { display: flex; flex-direction: column; gap: 10px; }
+  .heading .num { font-family: var(--font-serif); font-style: italic; font-size: 60px; color: var(--ink-mute); line-height: 1; letter-spacing: -0.02em; }
+  section.dark .heading .num { color: rgba(251, 248, 241, 0.4); }
+  .heading h2 { font-family: var(--font-serif); font-weight: 500; font-size: clamp(40px, 5vw, 72px); line-height: 1; letter-spacing: -0.025em; color: var(--ink); }
+  .heading h2 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .heading .right p { font-family: var(--font-sans); font-size: 17px; line-height: 1.5; color: var(--ink-soft); max-width: 60ch; }
+  section.dark .heading .right p { color: rgba(251, 248, 241, 0.78); }
+
+  /* Voice */
+  .voice-rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .voice-card { border: 1px solid var(--rule); padding: 28px 32px; border-radius: 4px; background: var(--paper-2); }
+  .voice-card h3 { font-family: var(--font-serif); font-weight: 500; font-size: 26px; letter-spacing: -0.015em; margin-bottom: 12px; line-height: 1.1; }
+  .voice-card h3 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .voice-card p { font-family: var(--font-sans); font-size: 14.5px; color: var(--ink-soft); }
+  .voice-card .ex { margin-top: 14px; padding-top: 14px; border-top: 1px dotted var(--rule); font-family: var(--font-serif); font-style: italic; font-size: 16px; color: var(--ink); }
+  .voice-card .ex b { color: var(--accent); font-style: italic; font-weight: 500; }
+
+  /* Vocab */
+  .vocab { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; padding: 56px 0; border-top: 1px solid rgba(251, 248, 241, 0.18); border-bottom: 1px solid rgba(251, 248, 241, 0.18); }
+  .vocab h4 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(251, 248, 241, 0.62); margin-bottom: 22px; }
+  .vocab .words { font-family: var(--font-serif); font-style: italic; font-size: 32px; line-height: 1.35; color: #fbf8f1; }
+  .vocab .words .sep { color: rgba(251, 248, 241, 0.45); font-style: normal; margin: 0 6px; }
+  .vocab .words.bad { color: rgba(251, 248, 241, 0.5); text-decoration: line-through; text-decoration-thickness: 1px; }
+
+  /* Colors */
+  .palette-group { display: flex; flex-direction: column; gap: 48px; }
+  .palette-row { display: flex; align-items: center; gap: 32px; }
+  .palette-row .name { flex: 0 0 200px; font-family: var(--font-serif); font-style: italic; font-size: 22px; color: inherit; }
+  .palette-row .name b { font-style: normal; font-weight: 500; display: block; font-size: 14px; font-family: var(--font-sans); color: var(--ink-mute); margin-top: 4px; }
+  .palette-row .swatches { flex: 1; display: flex; gap: 0; border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; }
+  .swatch { flex: 1; height: 84px; padding: 12px 14px; display: flex; flex-direction: column; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; }
+  .swatch .sn { font-family: var(--font-serif); font-style: italic; font-size: 15px; letter-spacing: 0; text-transform: none; }
+  .swatch .sh { opacity: 0.85; }
+
+  /* Type */
+  .type-block { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 24px 0; border-bottom: 1px dotted var(--rule); align-items: baseline; }
+  .type-block:last-child { border-bottom: none; }
+  .type-block .meta { display: flex; flex-direction: column; gap: 4px; }
+  .type-block .meta .token { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--ink-mute); text-transform: uppercase; }
+  .type-block .meta .specs { font-family: var(--font-sans); font-size: 13px; color: var(--ink-soft); }
+  .type-sample em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .type-sample.display { font-family: var(--font-serif); font-weight: 500; font-size: clamp(48px, 6vw, 92px); line-height: 0.92; letter-spacing: -0.03em; }
+  .type-sample.h2 { font-family: var(--font-serif); font-weight: 500; font-size: 44px; line-height: 1.05; letter-spacing: -0.02em; }
+  .type-sample.h3 { font-family: var(--font-serif); font-weight: 500; font-size: 26px; line-height: 1.15; letter-spacing: -0.01em; }
+  .type-sample.lede { font-family: var(--font-sans); font-size: 19px; line-height: 1.5; color: var(--ink-soft); max-width: 56ch; }
+  .type-sample.lede strong { color: var(--ink); font-weight: 500; }
+  .type-sample.body { font-family: var(--font-sans); font-size: 16px; line-height: 1.55; color: var(--ink-soft); max-width: 60ch; }
+  .type-sample.label-it { font-family: var(--font-serif); font-style: italic; font-size: 16px; color: var(--ink-mute); }
+  .type-sample.mono { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); }
+
+  /* Spacing */
+  .spacing-bars { display: flex; align-items: flex-end; gap: 24px; }
+  .sb { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .sb .bar { background: var(--brand-blue); border-radius: 1px; }
+  .sb .px { font-family: var(--font-serif); font-style: italic; font-size: 16px; color: var(--ink); }
+  .sb .t { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--ink-mute); }
+  .grid-explain { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .grid-card { padding: 24px 28px; border: 1px solid var(--rule); background: var(--paper-2); border-radius: 4px; }
+  .grid-card h4 { font-family: var(--font-serif); font-weight: 500; font-size: 22px; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .grid-card p { font-family: var(--font-sans); font-size: 14.5px; color: var(--ink-soft); }
+  .grid-card .tokens { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .grid-card .tok { font-family: var(--font-mono); font-size: 10px; padding: 3px 8px; border: 1px solid var(--rule); border-radius: 999px; color: var(--ink-soft); }
+
+  /* Components */
+  .comp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .comp { border: 1px solid var(--rule); background: var(--paper-2); border-radius: 4px; overflow: hidden; }
+  .comp .canvas { padding: 40px 36px; min-height: 180px; background: var(--paper); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--rule); }
+  .comp .meta { padding: 18px 24px; display: flex; flex-direction: column; gap: 6px; }
+  .comp .meta h4 { font-family: var(--font-serif); font-weight: 500; font-size: 22px; letter-spacing: -0.01em; }
+  .comp .meta h4 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .comp .meta p { font-family: var(--font-sans); font-size: 13.5px; color: var(--ink-soft); }
+  .comp .meta .specs { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--ink-mute); text-transform: uppercase; margin-top: 6px; }
+
+  .btn-sample { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; background: var(--brand-blue); color: #fbf8f1; border: 1px solid var(--brand-blue); font-family: var(--font-sans); font-size: 14px; font-weight: 500; }
+  .btn-sample-ghost { background: transparent; color: var(--brand-blue); border: 1px solid var(--brand-blue); }
+  .btn-link-sample { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-sans); font-size: 13px; font-weight: 500; color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 3px; }
+  .field-sample { display: flex; flex-direction: column; gap: 4px; width: 240px; }
+  .field-sample label { font-family: var(--font-serif); font-style: italic; font-size: 14px; color: var(--ink-mute); }
+  .field-sample input { font: inherit; font-family: var(--font-serif); font-size: 18px; color: var(--ink); border: none; border-bottom: 1px solid var(--ink); padding: 6px 0; background: transparent; outline: none; }
+  .stat-sample { display: flex; flex-direction: column; gap: 4px; }
+  .stat-sample .v { font-family: var(--font-serif); font-weight: 500; font-size: 56px; line-height: 1; letter-spacing: -0.02em; color: var(--ink); }
+  .stat-sample .l { font-family: var(--font-serif); font-style: italic; font-size: 15px; color: var(--ink-soft); }
+  .stat-sample .s { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); }
+  .quote-sample { font-family: var(--font-serif); font-weight: 500; font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); max-width: 36ch; text-align: center; }
+  .accordion-sample { width: 320px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); padding: 14px 0; display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+  .accordion-sample .q { font-family: var(--font-serif); font-weight: 500; font-size: 18px; color: var(--ink); }
+  .accordion-sample .sign { color: var(--accent); font-size: 22px; font-family: var(--font-serif); }
+  .badge-stat { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--ink); color: var(--ink); }
+
+  /* Rules */
+  .rules-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; }
+  .rule-line { padding: 22px 0; border-bottom: 1px solid rgba(251, 248, 241, 0.18); display: grid; grid-template-columns: 32px 1fr; gap: 18px; align-items: start; color: #fbf8f1; }
+  .rule-line:first-child, .rule-line:nth-child(2) { border-top: 1px solid rgba(251, 248, 241, 0.18); }
+  .rule-line .sign { font-family: var(--font-serif); font-weight: 500; font-size: 22px; color: var(--accent); line-height: 1; }
+  .rule-line.no .sign { color: #e07560; }
+  .rule-line h4 { font-family: var(--font-serif); font-weight: 500; font-size: 19px; letter-spacing: -0.005em; margin-bottom: 6px; color: #fbf8f1; }
+  .rule-line p { font-family: var(--font-sans); font-size: 14px; color: rgba(251, 248, 241, 0.75); }
+
+  /* Foot */
+  .foot { padding: 32px 64px; display: flex; justify-content: space-between; gap: 24px; color: var(--ink-mute); flex-wrap: wrap; }
+  .foot .serif { font-family: var(--font-serif); font-style: italic; font-size: 14px; }
+  .foot code { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); }
+
+  [data-mode="crepuscule"] .top { background: var(--brand-blue); color: rgba(251, 248, 241, 0.7); border-color: rgba(251, 248, 241, 0.18); }
+  [data-mode="crepuscule"] .top .serif { color: rgba(251, 248, 241, 0.85); }
+  [data-mode="crepuscule"] .top .logo { background: transparent; padding: 0; }
+  [data-mode="crepuscule"] .top button.mode { color: #fbf8f1; background: transparent; border-color: rgba(251, 248, 241, 0.3); }
+  [data-mode="crepuscule"] .top button.mode:hover { background: #fbf8f1; color: var(--brand-blue); border-color: #fbf8f1; }
+</style>
+</head>
+<body>
+
+  <div class="top">
+    <div class="left">
+      <img class="logo" src="assets/logo-espace-blanc.png" alt="Espace Blanc"/>
+      <span class="serif">Design System · v1.0 · Mai 2026</span>
+    </div>
+    <div class="right">
+      <span class="serif">Mode</span>
+      <button class="mode" onclick="toggleMode()">Crépuscule</button>
+    </div>
+  </div>
+
+  <section class="hero" data-screen-label="00 Hero">
+    <div class="grid">
+      <div>
+        <span class="label" style="margin-bottom: 18px; display: inline-block;">Le passage et l'allègement, rédigé proprement</span>
+        <h1>Une grammaire,<br/><em>pour parler juste</em></h1>
+      </div>
+      <div>
+        <p class="lede">Ce document fixe la voix, les couleurs, la typographie, les espacements et les composants d'Espace Blanc. Il sert deux usages : <strong>aligner l'équipe</strong> avant l'écriture du site, et <strong>donner à Claude Code</strong> tout ce qu'il faut pour générer du code propre, cohérent, sans réinvention.</p>
+        <dl class="meta">
+          <dt>Pour qui</dt><dd>Équipe Espace Blanc, développeurs, rédactrice·eur</dd>
+          <dt>Périmètre</dt><dd>Site marketing, espace client, communications</dd>
+          <dt>Tokens</dt><dd>colors_and_type.css — variables CSS, deux modes (Crème · Crépuscule)</dd>
+          <dt>UI Kit</dt><dd>ui_kits/website/ — composants React de référence</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <nav class="toc">
+    <a href="#voix"><span class="n">I</span><span class="t">La voix</span></a>
+    <a href="#vocabulaire"><span class="n">II</span><span class="t">Le vocabulaire</span></a>
+    <a href="#couleurs"><span class="n">III</span><span class="t">Les couleurs</span></a>
+    <a href="#type"><span class="n">IV</span><span class="t">La typographie</span></a>
+    <a href="#espacements"><span class="n">V</span><span class="t">Les espacements</span></a>
+    <a href="#composants"><span class="n">VI</span><span class="t">Les composants</span></a>
+  </nav>
+
+  <section id="voix" data-screen-label="01 Voix">
+    <div class="wrap">
+      <header class="heading">
+        <div class="left">
+          <span class="num">I</span>
+          <span class="label">La voix</span>
+        </div>
+        <div class="right">
+          <h2>Éditoriale, calme, <em>jamais larmoyante</em></h2>
+          <p>Espace Blanc s'adresse à des personnes en deuil, en transition, en stress administratif. Le ton rassure sans surjouer. Pas d'emphase commerciale. Pas d'emoji. Pas de superlatifs gratuits. Chaque mot est tenu.</p>
+        </div>
+      </header>
+      <div class="voice-rules">
+        <div class="voice-card">
+          <h3>Pronoms <em>fixés</em></h3>
+          <p>« Nous » côté marque. « Vous » côté client. Jamais « je », jamais « tu ». Cette distance est volontaire — c'est ce qui sépare un service d'un débarrasseur.</p>
+          <div class="ex">« Nous portons le reste. <b>Vous gardez la main.</b> »</div>
+        </div>
+        <div class="voice-card">
+          <h3>Une <em>italique</em> par titre</h3>
+          <p>Chaque titre porte un mot italique, et un seul. C'est lui qui porte l'émotion. L'italique est toujours coloré orange (l'accent de marque).</p>
+          <div class="ex">« Le passage, en de <b>bonnes mains</b> »</div>
+        </div>
+        <div class="voice-card">
+          <h3>Verbes <em>concrets</em></h3>
+          <p>Pas d'adjectifs vagues (« unique », « innovant », « premium »). Le bénéfice se prouve par un verbe d'action ou un chiffre daté.</p>
+          <div class="ex">412 missions, <b>au 31 mars 2026</b></div>
+        </div>
+        <div class="voice-card">
+          <h3>Phrases <em>courtes</em></h3>
+          <p>Souvent en deux temps avec une virgule, pour le souffle. Une figure de style par section, pas plus — sinon la formule devient une tique.</p>
+          <div class="ex">« On vide. <b>Vous respirez.</b> »</div>
+        </div>
+        <div class="voice-card">
+          <h3>Pas de <em>point final</em></h3>
+          <p>Les titres ne se ferment pas. Pas de point en fin de H1, H2, H3. La phrase reste ouverte — comme une porte qu'on laisse entrouverte.</p>
+          <div class="ex">« Quatre temps, <b>une cadence</b> »</div>
+        </div>
+        <div class="voice-card">
+          <h3>Chiffres <em>datés</em></h3>
+          <p>Chaque statistique porte sa date de mesure. Chaque promesse porte sa preuve vérifiable. Sans cela, le chiffre est du bruit.</p>
+          <div class="ex">84 t détournées — <b>bilan 2025</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="vocabulaire" class="dark" data-screen-label="02 Vocabulaire">
+    <div class="wrap">
+      <header class="heading">
+        <div class="left">
+          <span class="num">II</span>
+          <span class="label">Le vocabulaire</span>
+        </div>
+        <div class="right">
+          <h2>Les mots <em>que nous tenons</em></h2>
+          <p>Un seul mot interdit dans un copy = relecture immédiate. La promesse d'Espace Blanc tient dans son vocabulaire. On ne « débarrasse » pas un proche, on traverse un passage.</p>
+        </div>
+      </header>
+      <div class="vocab">
+        <div>
+          <h4>Mots oui</h4>
+          <p class="words">passage<span class="sep">·</span>allègement<span class="sep">·</span>valoriser<span class="sep">·</span>transmettre<span class="sep">·</span>soigner<span class="sep">·</span>mesurer<span class="sep">·</span>respecter<span class="sep">·</span>soulager<span class="sep">·</span>restituer</p>
+        </div>
+        <div>
+          <h4>Mots non</h4>
+          <p class="words bad">débarras<span class="sep">·</span>vide-grenier<span class="sep">·</span>ramassage<span class="sep">·</span>lot<span class="sep">·</span>encombrant<span class="sep">·</span>enlèvement</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="couleurs" data-screen-label="03 Couleurs">
+    <div class="wrap">
+      <header class="heading">
+        <div class="left">
+          <span class="num">III</span>
+          <span class="label">Les couleurs</span>
+        </div>
+        <div class="right">
+          <h2>Papier, encre <em>et un trait d'orange</em></h2>
+          <p>Deux modes interchangeables — Crème par défaut, Crépuscule en bascule. Une seule couleur d'accent (l'orange du logo). Le bleu nuit remplace le noir pour le texte et les boutons — plus chaud, plus élégant.</p>
+        </div>
+      </header>
+
+      <div class="palette-group">
+        <div class="palette-row">
+          <div class="name">Crème — papiers<b>Fonds principaux</b></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#efe9dc; color:#1c3559"><span class="sn">Paper</span><span class="sh">#efe9dc</span></div>
+            <div class="swatch" style="background:#fbf8f1; color:#1c3559"><span class="sn">Paper 2</span><span class="sh">#fbf8f1</span></div>
+            <div class="swatch" style="background:#e8e0cf; color:#1c3559"><span class="sn">Paper 3</span><span class="sh">#e8e0cf</span></div>
+          </div>
+        </div>
+
+        <div class="palette-row">
+          <div class="name">Encres — bleu nuit<b>Texte et boutons</b></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#1c3559; color:#fbf8f1"><span class="sn">Ink</span><span class="sh">#1c3559</span></div>
+            <div class="swatch" style="background:#3a4a6b; color:#fbf8f1"><span class="sn">Ink soft</span><span class="sh">#3a4a6b</span></div>
+            <div class="swatch" style="background:#6e7891; color:#fbf8f1"><span class="sn">Ink mute</span><span class="sh">#6e7891</span></div>
+            <div class="swatch" style="background:#142544; color:#fbf8f1"><span class="sn">Blue deep</span><span class="sh">#142544</span></div>
+          </div>
+        </div>
+
+        <div class="palette-row">
+          <div class="name">Accent — orange<b>Italiques, liens, hovers</b></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#ed710c; color:#fbf8f1"><span class="sn">Accent</span><span class="sh">#ed710c</span></div>
+            <div class="swatch" style="background:#c95a05; color:#fbf8f1"><span class="sn">Accent deep</span><span class="sh">#c95a05</span></div>
+            <div class="swatch" style="background:#f5b380; color:#1c3559"><span class="sn">Accent soft</span><span class="sh">#f5b380</span></div>
+          </div>
+        </div>
+
+        <div class="palette-row">
+          <div class="name">Crépuscule — nuit<b>Mode sombre, bascule</b></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#0f1626; color:#f3ecdd"><span class="sn">Paper</span><span class="sh">#0f1626</span></div>
+            <div class="swatch" style="background:#1a2540; color:#f3ecdd"><span class="sn">Paper 2</span><span class="sh">#1a2540</span></div>
+            <div class="swatch" style="background:#f3ecdd; color:#0f1626"><span class="sn">Ink</span><span class="sh">#f3ecdd</span></div>
+            <div class="swatch" style="background:#d6c9a8; color:#0f1626"><span class="sn">Ink soft</span><span class="sh">#d6c9a8</span></div>
+          </div>
+        </div>
+
+        <div class="palette-row">
+          <div class="name">Sémantique<b>Erreur, succès — états UI seulement</b></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#5a7a3a; color:#fbf8f1"><span class="sn">OK</span><span class="sh">#5a7a3a</span></div>
+            <div class="swatch" style="background:#c2452a; color:#fbf8f1"><span class="sn">Warn</span><span class="sh">#c2452a</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="type" data-screen-label="04 Type">
+    <div class="wrap">
+      <header class="heading">
+        <div class="left">
+          <span class="num">IV</span>
+          <span class="label">La typographie</span>
+        </div>
+        <div class="right">
+          <h2>Deux familles, <em>une mono d'accent</em></h2>
+          <p><strong>Cormorant Garamond</strong> pour la voix (titres, italiques, citations). <strong>Manrope</strong> pour le service (corps, UI, formulaires). <strong>JetBrains Mono</strong> uniquement pour les métadonnées rares — pagination, références de figure.</p>
+        </div>
+      </header>
+
+      <div class="type-block">
+        <div class="meta">
+          <span class="token">--text-display</span>
+          <span class="specs">Cormorant Garamond 500 · clamp(56, 7vw, 120) · LH 0.9 · LS −0.03em</span>
+        </div>
+        <div class="type-sample display">Le passage,<br/><em>en de bonnes mains</em></div>
+      </div>
+
+      <div class="type-block">
+        <div class="meta">
+          <span class="token">--text-3xl · H2</span>
+          <span class="specs">Cormorant Garamond 500 · 48px · LH 1.05 · LS −0.02em</span>
+        </div>
+        <div class="type-sample h2">Quatre temps, <em>une cadence</em></div>
+      </div>
+
+      <div class="type-block">
+        <div class="meta">
+          <span class="token">--text-xl · H3</span>
+          <span class="specs">Cormorant Garamond 500 · 26px · LH 1.15 · LS −0.01em</span>
+        </div>
+        <div class="type-sample h3">Diagnostic, tri, valorisation, <em>restitution</em></div>
+      </div>
+
+      <div class="type-block">
+        <div class="meta">
+          <span class="token">--text-lg · Lede</span>
+          <span class="specs">Manrope 400 · 19px · LH 1.5 · ink-soft</span>
+        </div>
+        <div class="type-sample lede">Succession, départ en résidence, déménagement. Nous orchestrons le tri, la valorisation et la transmission de votre patrimoine. <strong>Vous gardez la main, nous portons le reste.</strong></div>
+      </div>
+
+      <div class="type-block">
+        <div class="meta">
+          <span class="token">--text-base · Body</span>
+          <span class="specs">Manrope 400 · 16px · LH 1.55 · ink-soft</span>
+        </div>
+        <div class="type-sample body">Sans engagement, sous 24 h. Un appel d'abord, une visite ensuite. Nous écoutons davantage que nous parlons. Au sortir : un devis détaillé, ligne par ligne.</div>
+      </div>
+
+      <div class="type-block">
+        <div class="meta">
+          <span class="token">.eb-label</span>
+          <span class="specs">Cormorant Garamond italique · 14-16px · ink-mute</span>
+        </div>
+        <div class="type-sample label-it">Fig. 02 — Bibliothèque, Paris 6ᵉ</div>
+      </div>
+
+      <div class="type-block">
+        <div class="meta">
+          <span class="token">.eb-mono</span>
+          <span class="specs">JetBrains Mono 500 · 11px · LS 0.14em · UPPERCASE</span>
+        </div>
+        <div class="type-sample mono">01 · Succession · Bilan 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="espacements" data-screen-label="05 Espacements" style="background: var(--paper-2);">
+    <div class="wrap">
+      <header class="heading">
+        <div class="left">
+          <span class="num">V</span>
+          <span class="label">Les espacements</span>
+        </div>
+        <div class="right">
+          <h2>Une grille <em>de huit</em></h2>
+          <p>Tout est multiple de 8 (4 toléré pour les détails fins). Les sections respirent par padding vertical, jamais par marges arbitraires. Container max 1240px, padding latéral 64px en desktop, 24px en mobile.</p>
+        </div>
+      </header>
+
+      <div class="spacing-bars">
+        <div class="sb"><div class="bar" style="width:4px;height:4px"></div><span class="px">4</span><span class="t">--space-1</span></div>
+        <div class="sb"><div class="bar" style="width:8px;height:8px"></div><span class="px">8</span><span class="t">--space-2</span></div>
+        <div class="sb"><div class="bar" style="width:16px;height:16px"></div><span class="px">16</span><span class="t">--space-3</span></div>
+        <div class="sb"><div class="bar" style="width:24px;height:24px"></div><span class="px">24</span><span class="t">--space-4</span></div>
+        <div class="sb"><div class="bar" style="width:32px;height:32px"></div><span class="px">32</span><span class="t">--space-5</span></div>
+        <div class="sb"><div class="bar" style="width:48px;height:48px"></div><span class="px">48</span><span class="t">--space-6</span></div>
+        <div class="sb"><div class="bar" style="width:64px;height:64px"></div><span class="px">64</span><span class="t">--space-7</span></div>
+        <div class="sb"><div class="bar" style="width:96px;height:96px"></div><span class="px">96</span><span class="t">--space-8</span></div>
+      </div>
+
+      <div class="grid-explain">
+        <div class="grid-card">
+          <h4>Bordures &amp; arrondis</h4>
+          <p>Arrondis conservateurs : 2px sur les champs et cartes, 6px max sur les blocs proéminents, 999px pour les CTAs pill. Les bordures hairline (1px) remplacent les ombres : c'est la signature « papier ».</p>
+          <div class="tokens">
+            <span class="tok">--radius-xs 2px</span>
+            <span class="tok">--radius-md 6px</span>
+            <span class="tok">--radius-pill 999px</span>
+            <span class="tok">--border-hair</span>
+          </div>
+        </div>
+        <div class="grid-card">
+          <h4>Animations</h4>
+          <p>Transitions discrètes — 0.25s, cubic-bezier(.2,.7,.2,1). Hover boutons : la couleur passe à l'accent. Hover cards : translateY(-3px) avec ombre légère. Aucune animation décorative.</p>
+          <div class="tokens">
+            <span class="tok">--dur-fast 150ms</span>
+            <span class="tok">--dur-base 250ms</span>
+            <span class="tok">--ease-out</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="composants" data-screen-label="06 Composants">
+    <div class="wrap">
+      <header class="heading">
+        <div class="left">
+          <span class="num">VI</span>
+          <span class="label">Les composants</span>
+        </div>
+        <div class="right">
+          <h2>Huit briques, <em>pas trente</em></h2>
+          <p>Le kit est volontairement réduit. Chaque composant a une seule variante par défaut, et au plus un cas particulier nommé. Les briques se composent ; elles ne se déclinent pas. Code de référence dans <code>ui_kits/website/</code>.</p>
+        </div>
+      </header>
+
+      <div class="comp-grid">
+        <div class="comp">
+          <div class="canvas"><button class="btn-sample">Demander un diagnostic →</button></div>
+          <div class="meta">
+            <h4>Button <em>primary</em></h4>
+            <p>Fond brand-blue, texte cream, pill 999. Hover passe à l'orange accent avec texte navy. Réservé aux conversions importantes.</p>
+            <span class="specs">.eb-btn .eb-btn-primary</span>
+          </div>
+        </div>
+
+        <div class="comp">
+          <div class="canvas"><button class="btn-sample btn-sample-ghost">+33 1 47 84 12 03</button></div>
+          <div class="meta">
+            <h4>Button <em>ghost</em></h4>
+            <p>Bordure brand-blue, fond transparent. Hover s'inverse en plein. Pour les actions secondaires (téléphone, contact direct).</p>
+            <span class="specs">.eb-btn .eb-btn-ghost</span>
+          </div>
+        </div>
+
+        <div class="comp">
+          <div class="canvas"><a class="btn-link-sample">Lire l'accompagnement →</a></div>
+          <div class="meta">
+            <h4>Link <em>souligné</em></h4>
+            <p>Texte ink, underline 1px. Hover passe en accent. Préféré au bouton pour les navigations intra-page — on n'a pas besoin de cinq pills par section.</p>
+            <span class="specs">.eb-btn-link</span>
+          </div>
+        </div>
+
+        <div class="comp">
+          <div class="canvas">
+            <div class="field-sample">
+              <label>Adresse e-mail</label>
+              <input value="sophie.l@exemple.fr" />
+            </div>
+          </div>
+          <div class="meta">
+            <h4>Form <em>underline only</em></h4>
+            <p>Pas de box autour des champs. Underline ink, label serif italique. Focus passe à l'accent orange. Error passe au warn rouge.</p>
+            <span class="specs">.eb-field</span>
+          </div>
+        </div>
+
+        <div class="comp">
+          <div class="canvas">
+            <div class="stat-sample">
+              <div class="v">1,8 M€</div>
+              <div class="l">restitués aux familles</div>
+              <div class="s">valeur nette des ventes</div>
+            </div>
+          </div>
+          <div class="meta">
+            <h4>Stat <em>bloc</em></h4>
+            <p>Chiffre serif 500 grand format, label serif italique, sous-label mono uppercase. Toujours en grille 4 colonnes (ou 2 sur mobile), bordée d'une règle.</p>
+            <span class="specs">.eb-stats .eb-stat</span>
+          </div>
+        </div>
+
+        <div class="comp">
+          <div class="canvas">
+            <p class="quote-sample">« Ils ont tout trié devant moi, sans jamais me presser. »</p>
+          </div>
+          <div class="meta">
+            <h4>Quote <em>verbatim</em></h4>
+            <p>Citation serif sentence-case avec guillemets français. Accompagnée d'un portrait, d'une attribution serif italique et d'un chiffre-stat encadré.</p>
+            <span class="specs">.eb-quote</span>
+          </div>
+        </div>
+
+        <div class="comp">
+          <div class="canvas">
+            <div class="accordion-sample">
+              <span><span class="mono" style="margin-right: 12px;">01</span><span class="q">Combien coûte une intervention ?</span></span>
+              <span class="sign">+</span>
+            </div>
+          </div>
+          <div class="meta">
+            <h4>Accordion <em>FAQ</em></h4>
+            <p>Numérotation mono à gauche, question serif. Toggle +/- en accent orange. Border-top forte, séparation hairline entre items. Une seule ouverte à la fois.</p>
+            <span class="specs">.eb-faq .eb-faq-item</span>
+          </div>
+        </div>
+
+        <div class="comp">
+          <div class="canvas"><div class="badge-stat">4 200 € restitués</div></div>
+          <div class="meta">
+            <h4>Badge <em>preuve</em></h4>
+            <p>Encadré mono uppercase, bordure ink. Toujours porteur d'un fait vérifiable : une somme, une durée, une certification — jamais d'adjectif.</p>
+            <span class="specs">.eb-quote-stat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="regles" class="dark" data-screen-label="07 Règles">
+    <div class="wrap">
+      <header class="heading">
+        <div class="left">
+          <span class="num">VII</span>
+          <span class="label">Les règles d'usage</span>
+        </div>
+        <div class="right">
+          <h2>Faire, <em>ne pas faire</em></h2>
+          <p>Six règles qui passent avant le goût personnel. Elles encodent les décisions difficiles déjà prises sur le site live et les prototypes — pour ne pas les reperdre.</p>
+        </div>
+      </header>
+
+      <div class="rules-list">
+        <div class="rule-line">
+          <span class="sign">+</span>
+          <div>
+            <h4>Un seul accent, partout</h4>
+            <p>L'orange #ed710c sert les italiques d'emphase, les liens et les hovers. Aucune deuxième couleur d'appui, aucun gradient.</p>
+          </div>
+        </div>
+        <div class="rule-line no">
+          <span class="sign">×</span>
+          <div>
+            <h4>Pas d'emoji, jamais</h4>
+            <p>Le ton éditorial l'interdit. Si une icône est nécessaire, prendre le sprite line stroke 1.4 maison (ou Lucide en fallback).</p>
+          </div>
+        </div>
+        <div class="rule-line">
+          <span class="sign">+</span>
+          <div>
+            <h4>Hairline, pas d'ombre</h4>
+            <p>Les composants se délimitent par bordure 1px (--rule), pas par drop-shadow. Les ombres existent mais sont très subtiles, jamais marquées.</p>
+          </div>
+        </div>
+        <div class="rule-line no">
+          <span class="sign">×</span>
+          <div>
+            <h4>Pas cinq CTAs par page</h4>
+            <p>Hero + sticky nav + final cta = trois points de conversion, pas plus. Les blocs intermédiaires utilisent des liens texte.</p>
+          </div>
+        </div>
+        <div class="rule-line">
+          <span class="sign">+</span>
+          <div>
+            <h4>Chiffres datés, preuves citées</h4>
+            <p>Toute statistique porte sa date de mesure. Tout adjectif élogieux porte sa preuve. Sans cela, le chiffre est suspect.</p>
+          </div>
+        </div>
+        <div class="rule-line no">
+          <span class="sign">×</span>
+          <div>
+            <h4>Jamais de point en fin de titre</h4>
+            <p>Les titres restent ouverts. Pas de ponctuation finale sur H1, H2, H3. La phrase invite à lire la suite — c'est intentionnel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <span class="serif">Espace Blanc · Design System · v1.0</span>
+    <span class="serif">Tokens : <code>colors_and_type.css</code></span>
+    <span class="serif">UI kit : <code>ui_kits/website/</code></span>
+    <span class="serif">Démo : <a href="ui_kits/website/index.html" style="border-bottom: 1px solid var(--accent); color: var(--accent);">homepage de référence →</a></span>
+  </div>
+
+  <script>
+    function toggleMode(){
+      const cur = document.documentElement.getAttribute("data-mode");
+      const next = cur === "crepuscule" ? "creme" : "crepuscule";
+      document.documentElement.setAttribute("data-mode", next);
+      const btn = document.querySelector(".top button.mode");
+      btn.textContent = next === "crepuscule" ? "Crème" : "Crépuscule";
+    }
+  </script>
+</body>
+</html>

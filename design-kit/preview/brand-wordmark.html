@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 56px 64px; font-family: var(--font-sans); display:flex; align-items:center; justify-content:center; }
+  .mark{
+    display:flex; flex-direction: column; gap: 8px; align-items: flex-start;
+  }
+  .word{
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 96px; line-height: 0.95; letter-spacing: -0.025em;
+    color: var(--ink);
+  }
+  .word em{ font-style: italic; color: var(--accent); font-weight: 500; }
+  .tag{
+    font-family: var(--font-serif); font-style: italic; font-size: 16px;
+    color: var(--ink-mute);
+    padding-left: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="mark">
+    <div class="word">Espace <em>Blanc</em></div>
+    <div class="tag">Le passage et l'allègement, depuis 2021.</div>
+  </div>
+</body>
+</html>

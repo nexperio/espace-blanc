@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 32px; font-family: var(--font-sans); }
+  .row { display:flex; gap:0; border-radius: var(--radius-xs); overflow:hidden; border: 1px solid var(--rule); }
+  .swatch {
+    flex:1; height: 132px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding: 14px 16px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+  }
+  .swatch .name {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 17px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .swatch .hex { opacity:.85 }
+  .meta {
+    margin-top: 16px;
+    display:flex; justify-content:space-between; gap:24px;
+    font-family: var(--font-serif); font-style: italic; font-size: 14px;
+    color: var(--ink-mute);
+  }
+  .meta b { font-style: normal; color: var(--ink); font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="swatch" style="background:#efe9dc; color:#1f1a14">
+      <span class="name">Paper</span>
+      <span class="hex">#efe9dc · --paper</span>
+    </div>
+    <div class="swatch" style="background:#fbf8f1; color:#1f1a14">
+      <span class="name">Paper&nbsp;2</span>
+      <span class="hex">#fbf8f1 · --paper-2</span>
+    </div>
+    <div class="swatch" style="background:#e8e0cf; color:#1f1a14">
+      <span class="name">Paper&nbsp;3</span>
+      <span class="hex">#e8e0cf · --paper-3</span>
+    </div>
+    <div class="swatch" style="background:#4a4236; color:#fbf8f1">
+      <span class="name">Ink soft</span>
+      <span class="hex">#4a4236 · --ink-soft</span>
+    </div>
+    <div class="swatch" style="background:#1f1a14; color:#fbf8f1">
+      <span class="name">Ink</span>
+      <span class="hex">#1f1a14 · --ink</span>
+    </div>
+  </div>
+  <div class="meta">
+    <span><b>Mode Crème</b> · papier &amp; encre</span>
+    <span>Fonds &amp; texte principaux</span>
+  </div>
+</body>
+</html>
