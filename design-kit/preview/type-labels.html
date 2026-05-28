@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 32px 36px; font-family: var(--font-sans); }
+  .row { display:grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .col { display:flex; flex-direction: column; gap: 6px; }
+  .label-sample {
+    font-family: var(--font-serif); font-style: italic; font-weight: 500;
+    color: var(--ink-mute); font-size: 15px;
+  }
+  .mono-sample {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .desc {
+    font-family: var(--font-serif); font-style: italic;
+    color: var(--ink); font-size: 14px; opacity: .7;
+  }
+  .meta {
+    margin-top: 22px;
+    display:flex; gap:18px; flex-wrap:wrap;
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--ink-mute); letter-spacing: .1em;
+  }
+  .meta span { padding: 4px 8px; border: 1px solid var(--rule); border-radius: 99px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="col">
+      <span class="desc">Label éditorial — serif italique</span>
+      <span class="label-sample">Cahier I · Les trois portes</span>
+      <span class="label-sample">Édition n° 23 · Mai 2026</span>
+      <span class="label-sample">Fig. 02 — Bibliothèque, Paris 6ᵉ.</span>
+    </div>
+    <div class="col">
+      <span class="desc">Mono — métadonnées rares</span>
+      <span class="mono-sample">01 · SUCCESSION</span>
+      <span class="mono-sample">DURÉE · 4 SEMAINES</span>
+      <span class="mono-sample">EB / DS / V1.0</span>
+    </div>
+  </div>
+  <div class="meta">
+    <span>Labels = serif italique, pas caps</span>
+    <span>Mono = chiffres &amp; refs uniquement</span>
+    <span>--ink-mute</span>
+  </div>
+</body>
+</html>

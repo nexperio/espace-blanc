@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 36px; font-family: var(--font-sans); }
+  .article {
+    font-family: var(--font-sans); font-size: 16px; line-height: 1.6;
+    color: var(--ink-soft); max-width: 62ch;
+  }
+  .article::first-letter{
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 5.2em; line-height: 0.85;
+    float: left; padding: 6px 12px 0 0;
+    color: var(--accent);
+  }
+  .meta {
+    margin-top: 16px;
+    display:flex; gap:18px; flex-wrap:wrap;
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--ink-mute); letter-spacing: .1em;
+  }
+  .meta span { padding: 4px 8px; border: 1px solid var(--rule); border-radius: 99px; }
+</style>
+</head>
+<body>
+  <p class="article">Un logement n'est jamais qu'un logement. C'est un dépôt d'histoires, une grammaire de gestes, une biographie sans légende. Quand il faut le vider — pour partir, pour soigner, pour transmettre — on touche à plus qu'à des meubles.</p>
+  <div class="meta">
+    <span>.eb-drop-cap</span>
+    <span>5.2em · serif --accent</span>
+    <span>Réservé aux manifestes &amp; long-form</span>
+  </div>
+</body>
+</html>

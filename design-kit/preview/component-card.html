@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 24px 32px; font-family: var(--font-sans); }
+  .card{
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    display:flex; flex-direction: column;
+    transition: transform .35s var(--ease-out), box-shadow .35s ease;
+    cursor: pointer;
+    max-width: 360px;
+  }
+  .card:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -24px rgba(31,26,20,.22);
+  }
+  .card .img{
+    aspect-ratio: 4 / 5;
+    background:
+      linear-gradient(135deg, rgba(31,26,20,.04) 0%, rgba(31,26,20,.0) 60%),
+      repeating-linear-gradient(45deg, #d4c3a3 0 8px, #c9b790 8px 16px);
+    position: relative;
+  }
+  .card .img::after{
+    content: 'photographie · placeholder';
+    position: absolute; bottom: 10px; left: 12px;
+    font-family: var(--font-mono); font-size: 9.5px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(31,26,20,.55);
+  }
+  .card .info{ padding: 18px 22px 22px; display:flex; flex-direction: column; gap: 8px; }
+  .card .label{
+    font-family: var(--font-serif); font-style: italic; font-size: 13px;
+    color: var(--ink-mute);
+  }
+  .card h3{
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 26px; line-height: 1.05; letter-spacing: -0.015em;
+    color: var(--ink); margin: 0;
+  }
+  .card h3 em{ color: var(--accent); font-weight: 500; }
+  .card .lede{
+    font-family: var(--font-sans); font-size: 14px; color: var(--ink-soft);
+  }
+  .card .link{
+    margin-top: 6px;
+    font-family: var(--font-sans); font-size: 12.5px; font-weight: 500;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    align-self: flex-start;
+  }
+</style>
+</head>
+<body>
+  <article class="card">
+    <div class="img"></div>
+    <div class="info">
+      <span class="label">Article II — Sénior</span>
+      <h3>Honorer ce qui <em>reste.</em></h3>
+      <p class="lede">Choisir ce qui suit, donner ce qui peut servir, vivre plus léger.</p>
+      <span class="link">Lire l'accompagnement →</span>
+    </div>
+  </article>
+</body>
+</html>

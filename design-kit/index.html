@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>Refonte — sommaire</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Manrope:wght@300..700&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%;background:#efe9dc;color:#1f1a14}
+  body{
+    font-family:'Manrope',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+  }
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:1280px;margin:0 auto;padding:48px 56px 80px}
+
+  .strip{
+    display:flex;justify-content:space-between;align-items:center;gap:24px;
+    border-bottom:1px solid rgba(31,26,20,.18);padding-bottom:20px;
+    font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:0;
+    color:#7a7165;font-weight:500;
+  }
+  .top-row{
+    display:grid;grid-template-columns:1.4fr 1fr;gap:80px;
+    padding:64px 0 56px;align-items:end;
+  }
+  h1{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:clamp(56px,7vw,120px);line-height:.92;letter-spacing:-0.03em;
+    color:#1f1a14;
+  }
+  h1 em{font-style:normal;color:#1f1a14;font-weight:500}
+  .lede{font-size:18px;color:#4a4236;max-width:42ch;}
+  .lede strong{color:#1f1a14;font-weight:500}
+
+  .label-line{
+    font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:0;
+    color:#7a7165;display:block;margin-bottom:18px;font-weight:500;
+  }
+
+  /* Primary card — the deck */
+  .primary{
+    display:grid;grid-template-columns:1.4fr 1fr;gap:0;
+    background:#fbf8f1;border:1px solid rgba(31,26,20,.12);border-radius:6px;
+    overflow:hidden;margin-bottom:64px;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
+  }
+  .primary:hover{transform:translateY(-3px);box-shadow:0 30px 60px -25px rgba(31,26,20,.3)}
+  .primary .text{padding:48px 56px;display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+  .primary .text .top{display:flex;flex-direction:column;gap:16px}
+  .primary .text h2{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:60px;line-height:1;letter-spacing:-0.03em;
+  }
+  .primary .text h2 em{font-style:normal;color:#1f1a14;font-weight:500}
+  .primary .text p{color:#4a4236;font-size:16px;max-width:38ch}
+  .primary .cta{
+    display:inline-flex;align-items:center;gap:14px;
+    padding:14px 22px;
+    background:#1f1a14;color:#fbf8f1;border-radius:99px;
+    font-family:'Manrope',sans-serif;font-weight:500;font-size:14px;
+    align-self:flex-start;transition:background .25s ease;
+  }
+  .primary:hover .cta{background:#a78060}
+  .primary .preview{
+    position:relative;
+    background:#1f1a14;
+    aspect-ratio:auto;
+    min-height:340px;
+    display:grid;grid-template-columns:repeat(4,1fr);
+  }
+  .primary .preview .swatch{position:relative}
+  .primary .preview .swatch .lab{
+    position:absolute;bottom:18px;left:18px;
+    color:#fbf8f1;
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:22px;letter-spacing:-0.015em;
+    line-height:1;
+  }
+  .primary .preview .swatch .nm{
+    position:absolute;top:18px;left:18px;
+    color:rgba(251,248,241,.7);
+    font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:0;font-weight:500;
+  }
+  .swatch.eb1{background:linear-gradient(180deg,#faf6ec 0%,#ece4d0 100%)}
+  .swatch.eb1 .lab,.swatch.eb1 .nm{color:#5e4a36}
+  .swatch.eb2{background:linear-gradient(180deg,#d9c9a9 0%,#a78060 100%)}
+  .swatch.eb2 .lab{color:#2d241b}
+  .swatch.eb2 .nm{color:#5e4a36}
+  .swatch.ek1{background:linear-gradient(180deg,#efd9c1 0%,#d49b7d 100%)}
+  .swatch.ek1 .lab{color:#3a2c20}
+  .swatch.ek1 .nm{color:#7a5443}
+  .swatch.ek2{background:linear-gradient(180deg,#1a2540 0%,#0f1626 100%)}
+
+  /* Secondary cards */
+  .sec-row{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
+  }
+  .sec-card{
+    display:flex;flex-direction:column;
+    background:#fbf8f1;
+    border:1px solid rgba(31,26,20,.12);border-radius:6px;
+    overflow:hidden;
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .sec-card:hover{transform:translateY(-2px);box-shadow:0 20px 40px -20px rgba(31,26,20,.2)}
+  .sec-card .img{
+    height:180px;background-size:cover;background-position:center;
+    background-color:#d9c9a9;
+  }
+  .sec-card.dark .img{background-color:#0f1626}
+  .sec-card .info{padding:28px 32px;display:flex;flex-direction:column;gap:10px}
+  .sec-card h3{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:30px;line-height:1.05;letter-spacing:-0.02em;
+  }
+  .sec-card h3 em{font-style:normal;color:#1f1a14;font-weight:500}
+  .sec-card p{color:#7a7165;font-size:14px}
+  .sec-card .arrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:#1f1a14;border-bottom:1px solid #1f1a14;padding-bottom:3px;
+    align-self:flex-start;margin-top:8px;
+  }
+
+  .footer{
+    margin-top:64px;
+    border-top:1px solid rgba(31,26,20,.18);padding-top:20px;
+    display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:0;
+    color:#7a7165;font-weight:500;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="strip">
+      <span>Préparé pour Eugenia · espace-blanc.com</span>
+      <span>Mai 2026 · v2</span>
+    </div>
+
+    <div class="top-row">
+      <h1>Refonte du site —<br/>sommaire</h1>
+      <p class="lede">À l'écran, deux livrables. <strong>Le cahier de directions</strong> à parcourir d'abord — il sert à trancher la direction visuelle et le nom. <strong>Les prototypes interactifs</strong> en dessous, livrés à titre d'exploration de l'expérience.</p>
+    </div>
+
+    <span class="label-line">Livrable principal · à parcourir</span>
+
+    <a class="primary" href="Directions visuelles.html">
+      <div class="text">
+        <div class="top">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:0;color:#7a7165;font-weight:500">Cahier de directions · 04 planches</span>
+          <h2>Deux directions,<br/>deux noms</h2>
+          <p>Une piste si l'on garde Espace Blanc, une piste si l'on bascule sur Eklipsis. Palette, typographie, photographie, logo — pour chaque direction.</p>
+        </div>
+        <span class="cta">Ouvrir le cahier <span style="font-size:18px;line-height:1">→</span></span>
+      </div>
+      <div class="preview">
+        <div class="swatch eb1">
+          <span class="nm">01 · Espace Blanc</span>
+          <span class="lab">Lumière<br/>&amp; sérénité</span>
+        </div>
+        <div class="swatch ek2">
+          <span class="nm" style="color:rgba(251,248,241,.6)">02 · Eklipsis</span>
+          <span class="lab" style="color:#caa07a">Velours,<br/>la nuit calme</span>
+        </div>
+      </div>
+    </a>
+
+    <span class="label-line">Exploration d'expérience · annexe</span>
+
+    <div class="sec-row">
+      <a class="sec-card" href="Espace Blanc.html">
+        <div class="img" style="background-image:url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=900&auto=format&fit=crop&q=78')"></div>
+        <div class="info">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:0;color:#7a7165;font-weight:500">Prototype · Espace Blanc</span>
+          <h3>Site complet — direction <em>éditoriale</em></h3>
+          <p>Une lecture journal du site (cahiers, lettrines, courrier des lecteurs). À ouvrir si la posture éditoriale t'intéresse, à ignorer sinon.</p>
+          <span class="arrow">Ouvrir le prototype →</span>
+        </div>
+      </a>
+
+      <a class="sec-card dark" href="Eklipsis.html">
+        <div class="img" style="background-image:url('https://images.unsplash.com/photo-1499346030926-9a72daac6c63?w=900&auto=format&fit=crop&q=78')"></div>
+        <div class="info">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:0;color:#7a7165;font-weight:500">Prototype · Eklipsis</span>
+          <h3>Site complet — direction <em>crépuscule</em></h3>
+          <p>Variante navy + terracotta, plus contemporaine. À ouvrir pour explorer le parcours utilisateur (formulaire, mega-menu, espace client).</p>
+          <span class="arrow">Ouvrir le prototype →</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <span>D'après le brief diagnostic</span>
+      <span>Eugenia · Eklipsis &amp; Espace Blanc</span>
+      <span></span>
+    </div>
+  </div>
+</body>
+</html>

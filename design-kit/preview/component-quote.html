@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 36px; font-family: var(--font-sans); }
+  .quote{
+    display:grid; grid-template-columns: 180px 1fr; gap: 28px;
+    align-items: center;
+  }
+  .portrait{
+    width: 180px; aspect-ratio: 3 / 4;
+    background:
+      linear-gradient(135deg, rgba(31,26,20,.06), rgba(31,26,20,0) 60%),
+      repeating-linear-gradient(45deg, #d4c3a3 0 8px, #c9b790 8px 16px);
+    border: 1px solid var(--rule);
+  }
+  .text{ display:flex; flex-direction:column; gap: 12px }
+  .q{
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 30px; line-height: 1.25; letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .attr{
+    font-family: var(--font-serif); font-style: italic; font-size: 14px;
+    color: var(--ink-mute);
+  }
+  .attr b{ font-style: normal; color: var(--ink); font-weight: 500; }
+  .stat{
+    display:inline-block;
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: .12em; text-transform: uppercase;
+    padding: 4px 10px; border: 1px solid var(--ink);
+    color: var(--ink);
+  }
+</style>
+</head>
+<body>
+  <figure class="quote">
+    <div class="portrait"></div>
+    <div class="text">
+      <p class="q">« Ils ont tout trié devant moi, sans jamais me presser. Le carnet est revenu chez moi, le piano est parti chez un jeune couple. »</p>
+      <span class="attr"><b>Jean P.</b> — fils unique, succession · Versailles</span>
+      <span class="stat">4 200 € restitués</span>
+    </div>
+  </figure>
+</body>
+</html>

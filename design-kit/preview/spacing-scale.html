@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 36px; font-family: var(--font-sans); }
+  .scale { display:flex; align-items: flex-end; gap: 20px; height: 132px; }
+  .step { display:flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .bar { background: var(--ink); border-radius: 1px; }
+  .tok {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: .08em; color: var(--ink-mute);
+  }
+  .px {
+    font-family: var(--font-serif); font-style: italic; font-size: 14px;
+    color: var(--ink);
+  }
+  .meta {
+    margin-top: 16px;
+    display:flex; gap:18px; flex-wrap:wrap;
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--ink-mute); letter-spacing: .1em;
+  }
+  .meta span { padding: 4px 8px; border: 1px solid var(--rule); border-radius: 99px; }
+</style>
+</head>
+<body>
+  <div class="scale">
+    <div class="step"><div class="bar" style="width:4px;height:4px"></div><span class="px">4</span><span class="tok">--space-1</span></div>
+    <div class="step"><div class="bar" style="width:8px;height:8px"></div><span class="px">8</span><span class="tok">--space-2</span></div>
+    <div class="step"><div class="bar" style="width:16px;height:16px"></div><span class="px">16</span><span class="tok">--space-3</span></div>
+    <div class="step"><div class="bar" style="width:24px;height:24px"></div><span class="px">24</span><span class="tok">--space-4</span></div>
+    <div class="step"><div class="bar" style="width:32px;height:32px"></div><span class="px">32</span><span class="tok">--space-5</span></div>
+    <div class="step"><div class="bar" style="width:48px;height:48px"></div><span class="px">48</span><span class="tok">--space-6</span></div>
+    <div class="step"><div class="bar" style="width:64px;height:64px"></div><span class="px">64</span><span class="tok">--space-7</span></div>
+    <div class="step"><div class="bar" style="width:96px;height:96px"></div><span class="px">96</span><span class="tok">--space-8</span></div>
+  </div>
+  <div class="meta">
+    <span>Grille de 8 · 4 toléré pour les détails</span>
+    <span>Tout en multiple</span>
+  </div>
+</body>
+</html>

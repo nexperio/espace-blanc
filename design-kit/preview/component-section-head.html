@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 36px; font-family: var(--font-sans); }
+  .section-head{
+    display:grid; grid-template-columns: 1fr 1.8fr 1fr;
+    gap: 24px; align-items: baseline;
+    border-top: 1px solid var(--rule-strong);
+    padding-top: 22px;
+  }
+  .eyebrow{
+    font-family: var(--font-serif); font-style: italic; font-size: 14px;
+    color: var(--ink-mute);
+  }
+  .title{
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 44px; line-height: 1; letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .title em{ font-style: italic; color: var(--accent); font-weight: 500; }
+  .aside{
+    text-align: right;
+    font-family: var(--font-serif); font-style: italic; font-size: 13px;
+    color: var(--ink-mute);
+    max-width: 22ch; justify-self: end;
+  }
+  .meta {
+    margin-top: 22px;
+    display:flex; gap:18px; flex-wrap:wrap;
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--ink-mute); letter-spacing: .1em;
+  }
+  .meta span { padding: 4px 8px; border: 1px solid var(--rule); border-radius: 99px; }
+</style>
+</head>
+<body>
+  <header class="section-head">
+    <span class="eyebrow">Cahier II · Bilan d'impact</span>
+    <h2 class="title">Ce que <em>nous mesurons.</em></h2>
+    <span class="aside">Chiffres au 31 mars 2026, vérifiables sur demande.</span>
+  </header>
+  <div class="meta">
+    <span>3 colonnes · 1 / 1.8 / 1</span>
+    <span>Baseline alignée</span>
+    <span>Règle horizontale au-dessus</span>
+  </div>
+</body>
+</html>

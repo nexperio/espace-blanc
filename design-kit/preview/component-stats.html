@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 36px; font-family: var(--font-sans); }
+  .grid{
+    display:grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+  }
+  .stat{
+    padding: 26px 18px;
+    border-right: 1px solid var(--rule);
+  }
+  .stat:last-child{ border-right: none }
+  .stat .v{
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 54px; line-height: 1; letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .stat .l{
+    margin-top: 10px;
+    font-family: var(--font-serif); font-style: italic; font-size: 15px;
+    color: var(--ink-soft);
+  }
+  .stat .s{
+    margin-top: 4px;
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="stat">
+      <div class="v">412</div>
+      <div class="l">missions accompagnées</div>
+      <div class="s">depuis 2021</div>
+    </div>
+    <div class="stat">
+      <div class="v">1,8 M€</div>
+      <div class="l">restitués aux familles</div>
+      <div class="s">valeur nette ventes</div>
+    </div>
+    <div class="stat">
+      <div class="v">84 t</div>
+      <div class="l">détournées de la décharge</div>
+      <div class="s">dons + recyclage</div>
+    </div>
+    <div class="stat">
+      <div class="v">23</div>
+      <div class="l">associations partenaires</div>
+      <div class="s">Île-de-France</div>
+    </div>
+  </div>
+</body>
+</html>

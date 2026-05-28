@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>Eklipsis — Le passage, en de bonnes mains.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Karla:wght@300..700&family=Manrope:wght@300..700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ivory:#f8f5f2;
+    --ivory-2:#e8dec9;
+    --ivory-3:#d9c9a9;
+    --night:#0f1626;
+    --night-2:#08101c;
+    --night-3:#1a2336;
+    --ember:#3a2820;
+    --ink:#1c2230;
+    --ink-soft:#4d556c;
+    --ink-mute:#878a99;
+    --terra:#ffb267;
+    --terra-light:#ffd09e;
+    --gold:#ffb267;
+    --ivory-text:#f3eadb;
+    --ivory-mute:#c4b896;
+    --line-dark:rgba(240,229,207,.16);
+    --line-light:rgba(28,34,48,.14);
+    --accent: var(--terra);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--night);color:var(--ivory-text)}
+  body{
+    font-family:'Karla',system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
+
+  /* Typography */
+  .serif{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.005em;line-height:1}
+  .italic{font-weight:500}
+  h1,h2,h3,h4{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.005em;line-height:1}
+  .label{
+    font-family:'DM Mono',ui-monospace,monospace;
+    font-size:10.5px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .label-dark{color:var(--ivory-mute)}
+
+  /* Layout */
+  .page{max-width:1360px;margin:0 auto;padding:0 56px}
+  @media (max-width:720px){.page{padding:0 24px}}
+
+  /* Buttons — refined boutique */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 26px;
+    font-family:'Karla',sans-serif;
+    font-weight:500;
+    font-size:13.5px;letter-spacing:0.01em;
+    color:var(--ivory);
+    background:var(--night);
+    border:1px solid var(--night);
+    border-radius:999px;
+    transition:all .25s ease;
+  }
+  .btn:hover{background:var(--terra);border-color:var(--terra);transform:translateY(-1px)}
+  .btn-ghost{color:var(--ink);background:transparent;border:1px solid var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--ivory)}
+  .btn-terra{background:var(--terra);border-color:var(--terra)}
+  .btn-terra:hover{background:#e89548;border-color:#8e7257}
+  .btn-ivory{
+    color:var(--night);background:var(--ivory);border-color:var(--ivory);
+  }
+  .btn-ivory:hover{background:var(--terra-light);border-color:var(--terra-light);color:var(--night)}
+  .btn-outline-light{
+    color:var(--ivory);border:1px solid rgba(240,229,207,.45);background:transparent;
+  }
+  .btn-outline-light:hover{background:var(--ivory);color:var(--night);border-color:var(--ivory)}
+  .btn-link{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Karla',sans-serif;font-weight:500;font-size:13px;
+    color:inherit;cursor:pointer;
+    padding-bottom:3px;border-bottom:1px solid currentColor;
+  }
+  .btn-link:hover{color:var(--terra)}
+
+  /* Dot — eclipse logomark */
+  .eclipse-dot{
+    position:relative;width:14px;height:14px;border-radius:50%;
+    background:var(--terra);
+    box-shadow:inset -4px -2px 0 0 var(--night);
+    display:inline-block;
+  }
+  .eclipse-dot.on-dark{box-shadow:inset -4px -2px 0 0 var(--ivory)}
+
+  /* Photo with caption */
+  .photo{
+    position:relative;overflow:hidden;background:#26344d;
+    border-radius:6px;
+  }
+  .photo .img{
+    position:absolute;inset:0;background-size:cover;background-position:center;
+    transition:transform 1s cubic-bezier(.2,.7,.2,1);
+  }
+  .photo:hover .img{transform:scale(1.04)}
+  .photo .cap{
+    position:absolute;left:16px;bottom:16px;
+    color:var(--ivory);
+    font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;
+    background:rgba(13,22,38,.5);backdrop-filter:blur(8px);
+    padding:6px 10px;border-radius:99px;
+    -webkit-backdrop-filter:blur(8px);
+  }
+
+  /* dotted divider */
+  .div-dotted{border-top:1px dashed var(--line-light)}
+  .div-dotted-dark{border-top:1px dashed var(--line-dark)}
+
+  /* form fields */
+  .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+  .field label{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-soft)}
+  .field input,.field textarea,.field select{
+    background:rgba(255,255,255,.4);
+    border:1px solid var(--line-light);
+    padding:14px 16px;
+    border-radius:8px;
+    font-family:'Karla',sans-serif;
+    font-size:15.5px;
+    color:var(--ink);
+    outline:none;
+    transition:border-color .2s ease,background .2s ease;
+  }
+  .field input:focus,.field textarea:focus,.field select:focus{
+    border-color:var(--terra);background:rgba(255,255,255,.7);
+  }
+
+  /* mega menu */
+  .mega{
+    position:fixed;
+    inset:0;
+    z-index:120;
+    background:linear-gradient(180deg,#08101c 0%, #0f1626 65%, #2a1d20 100%);
+    color:var(--ivory-text);
+    transform:translateY(-100%);
+    transition:transform .5s cubic-bezier(.2,.7,.2,1);
+    overflow:auto;
+  }
+  .mega.open{transform:translateY(0)}
+  .mega::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(70% 50% at 90% 100%, rgba(198,106,74,.35) 0%, transparent 60%),
+      radial-gradient(60% 50% at 10% 0%, rgba(31,44,68,.6) 0%, transparent 60%);
+  }
+
+  /* modal */
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(13,22,38,.7);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    display:flex;align-items:center;justify-content:center;
+    z-index:200;padding:24px;
+    opacity:0;pointer-events:none;transition:opacity .25s ease;
+  }
+  .modal-overlay.open{opacity:1;pointer-events:auto}
+  .modal{
+    background:var(--ivory);
+    color:var(--ink);
+    max-width:480px;width:100%;
+    border-radius:16px;
+    padding:40px;
+    transform:translateY(20px) scale(.98);transition:transform .35s ease;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.5);
+  }
+  .modal-overlay.open .modal{transform:translateY(0) scale(1)}
+
+  /* progress */
+  .progress{display:flex;gap:8px;margin-bottom:36px}
+  .progress span{
+    flex:1;height:3px;background:rgba(28,34,48,.12);border-radius:99px;
+    position:relative;overflow:hidden;
+  }
+  .progress span.done{background:var(--night)}
+  .progress span.current{background:linear-gradient(90deg,var(--terra) 0%, var(--terra-light) 100%);transform:scaleX(.9);transform-origin:left}
+
+  /* horizontal scroll */
+  .h-scroll{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:24px;scrollbar-width:none;padding:4px 0}
+  .h-scroll::-webkit-scrollbar{display:none}
+  .h-scroll>*{scroll-snap-align:start;flex:0 0 auto}
+
+  /* view enter */
+  .view{animation:viewIn .5s cubic-bezier(.2,.7,.2,1)}
+  @keyframes viewIn{
+    from{opacity:0;transform:translateY(10px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  /* eclipse subtle background pattern */
+  .twilight-bg{
+    background:
+      radial-gradient(80% 60% at 80% 100%, rgba(192,160,122,.22) 0%, transparent 55%),
+      radial-gradient(60% 50% at 0% 0%, rgba(31,44,68,.0) 0%, transparent 60%),
+      linear-gradient(180deg, var(--night-2) 0%, var(--night) 60%, var(--night-3) 100%);
+    color:var(--ivory-text);
+  }
+
+  /* Dark accent toggles */
+  body[data-palette="twilight"]{
+    --accent:var(--terra);
+  }
+  body[data-palette="dawn"]{
+    --accent:#d4a373;
+  }
+  body[data-palette="indigo"]{
+    --accent:#7c8ec4;
+  }
+
+  /* Nav link */
+  .nav-link{
+    position:relative;font-weight:500;font-size:13.5px;color:var(--ink);
+    padding:6px 0;cursor:pointer;
+    white-space:nowrap;
+  }
+  .nav-link::after{
+    content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:currentColor;
+    transform:scaleX(0);transform-origin:right;transition:transform .3s ease;
+  }
+  .nav-link:hover::after,.nav-link.active::after{transform:scaleX(1);transform-origin:left}
+  .nav-link.active{color:var(--terra)}
+
+  .nav-link-dark{color:var(--ivory-text)}
+  .nav-link-dark.active{color:var(--terra-light)}
+
+  .btn{white-space:nowrap}
+  @media (max-width:1100px){.nav-hide-md{display:none !important}}
+  @media (max-width:880px){.nav-hide-sm{display:none !important}}
+
+  /* Footer */
+  .footer-twilight{
+    background:linear-gradient(180deg, var(--night) 0%, var(--night-2) 100%);
+    color:var(--ivory-text);
+    padding:96px 0 40px;
+    margin-top:0;
+    position:relative;
+    overflow:hidden;
+  }
+  .footer-twilight::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(60% 40% at 90% 110%, rgba(198,106,74,.28) 0%, transparent 55%);
+  }
+
+  /* tags / chips */
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 12px;
+    font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+    border:1px solid var(--line-light);border-radius:99px;
+    background:rgba(255,255,255,.4);
+  }
+  .chip-dark{
+    color:var(--ivory-text);border-color:rgba(240,229,207,.25);background:rgba(240,229,207,.06);
+  }
+
+</style>
+</head>
+<body data-palette="twilight">
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="ek/shared.jsx"></script>
+  <script type="text/babel" src="ek/home.jsx"></script>
+  <script type="text/babel" src="ek/pages.jsx"></script>
+  <script type="text/babel" src="eb/tweaks-panel.jsx"></script>
+  <script type="text/babel" src="ek/app.jsx"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 36px; font-family: var(--font-sans); }
+  .stack { display:flex; flex-direction: column; gap: 6px; }
+  .display {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 88px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .display em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .meta {
+    display:flex; gap:18px; flex-wrap:wrap;
+    margin-top: 16px;
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--ink-mute); letter-spacing: .1em;
+  }
+  .meta span { padding: 4px 8px; border: 1px solid var(--rule); border-radius: 99px; }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <div class="display">Le passage,<br/><em>en de bonnes mains.</em></div>
+  </div>
+  <div class="meta">
+    <span>Cormorant Garamond · 500</span>
+    <span>--text-display · clamp(56, 7vw, 120)</span>
+    <span>line-height 0.9</span>
+    <span>letter-spacing −0.03em</span>
+  </div>
+</body>
+</html>

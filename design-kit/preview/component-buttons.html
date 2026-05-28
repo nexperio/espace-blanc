@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background: var(--paper); }
+  body { padding: 28px 36px; font-family: var(--font-sans); }
+
+  .row { display:flex; gap:14px; flex-wrap: wrap; align-items: center; }
+  .btn{
+    display:inline-flex; align-items:center; gap: 10px;
+    padding: 14px 22px;
+    background: var(--ink); color: var(--paper-2);
+    border: 1px solid var(--ink); border-radius: 999px;
+    font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: background var(--dur-base) var(--ease-out);
+    text-decoration: none;
+  }
+  .btn:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+  .btn .arrow{ font-size: 16px; line-height: 1 }
+  .btn-ghost{
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .btn-ghost:hover{ background: var(--ink); color: var(--paper-2); }
+  .btn-link{
+    display:inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-sans); font-size: 13px; font-weight: 500;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 3px;
+    text-decoration: none;
+    text-transform: none; letter-spacing: 0;
+  }
+  .btn-link:hover{ color: var(--accent); border-color: var(--accent); }
+  .meta {
+    margin-top: 20px;
+    display:flex; gap:18px; flex-wrap:wrap;
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--ink-mute); letter-spacing: .1em;
+  }
+  .meta span { padding: 4px 8px; border: 1px solid var(--rule); border-radius: 99px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <a class="btn" href="#">Demander un diagnostic <span class="arrow">→</span></a>
+    <a class="btn btn-ghost" href="#">+33 1 47 84 12 03</a>
+    <a class="btn-link" href="#">Lire l'accompagnement →</a>
+  </div>
+  <div class="meta">
+    <span>Primary = --ink, jamais --accent</span>
+    <span>Hover primary → --accent-deep</span>
+    <span>Pill 999px</span>
+  </div>
+</body>
+</html>

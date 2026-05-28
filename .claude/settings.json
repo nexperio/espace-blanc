@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -I \"https://api.anthropic.com/v1/design/h/PhAOiiImfpBKPj8I4JBTKg?open_file=ui_kits%2Fwebsite%2Findex.html\")",
+      "Bash(curl -s \"https://api.anthropic.com/v1/design/h/PhAOiiImfpBKPj8I4JBTKg\" -o /tmp/design.bin -w \"HTTP: %{http_code}\\\\nSize: %{size_download}\\\\nType: %{content_type}\\\\n\")",
+      "Bash(curl -s \"https://api.anthropic.com/v1/design/h/PhAOiiImfpBKPj8I4JBTKg/README.md\" -w \"\\\\nHTTP: %{http_code}\\\\n\")",
+      "Bash(curl -s \"https://api.anthropic.com/v1/design/h/PhAOiiImfpBKPj8I4JBTKg/files\" -w \"\\\\nHTTP: %{http_code}\\\\n\")",
+      "Bash(curl -s \"https://api.anthropic.com/v1/design/h/PhAOiiImfpBKPj8I4JBTKg?open_file=README.md\" -o /tmp/readme_resp.html -w \"HTTP: %{http_code}\\\\nSize: %{size_download}\\\\nType: %{content_type}\\\\n\")",
+      "Bash(curl -s -X POST \"https://api.anthropic.com/v1/design/h/PhAOiiImfpBKPj8I4JBTKg?open_file=ui_kits%2Fwebsite%2Findex.html\" -o /tmp/design.bin -w \"HTTP: %{http_code}\\\\nSize: %{size_download}\\\\nType: %{content_type}\\\\n\")",
+      "Bash(curl -sL \"https://api.anthropic.com/v1/design/h/PhAOiiImfpBKPj8I4JBTKg?open_file=ui_kits%2Fwebsite%2Findex.html\" -o /tmp/design.bin -w \"HTTP: %{http_code}\\\\nSize: %{size_download}\\\\nType: %{content_type}\\\\nFinalURL: %{url_effective}\\\\n\")",
+      "Bash(curl -sL \"https://api.anthropic.com/v1/design/h/7dNaPzqpjnwbkLf0vSHXXQ?open_file=design-system.html\" -o /tmp/design2.bin -w \"HTTP: %{http_code}\\\\nSize: %{size_download}\\\\nType: %{content_type}\\\\n\")",
+      "Bash(curl -sL \"https://api.anthropic.com/v1/design/h/7dNaPzqpjnwbkLf0vSHXXQ\" -o /tmp/design2_root.bin -w \"HTTP: %{http_code}\\\\nSize: %{size_download}\\\\nType: %{content_type}\\\\n\")",
+      "Bash(curl -sL \"https://api.anthropic.com/v1/design/h/7dNaPzqpjnwbkLf0vSHXXQ/design-system.html\" -o /tmp/design2_file.bin -w \"HTTP: %{http_code}\\\\nSize: %{size_download}\\\\nType: %{content_type}\\\\n\")",
+      "Bash(curl -sS -o /tmp/homepage.html -w \"HTTP: %{http_code}\\\\nSize: %{size_download}\\\\n\" http://localhost:3000/)",
+      "Bash(curl -sS http://localhost:3000/)",
+      "Bash(curl -sS 'http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__0h5.lr9._.css' -o /tmp/served.css -w \"HTTP: %{http_code}\\\\nSize: %{size_download}\\\\n\")"
+    ]
+  }
+}
